@@ -1,0 +1,910 @@
+/* ==========================================================================
+   style2.css - الستايل الأزرق الملكي الراقي لشاشة مواقيت الصلاة (Vertical Royal Blue Theme)
+   مستوحى ومطابق للصورة المرفقة (مسجد النور - الألوان الزرقاء الداكنة والذهبية الملكية)
+   ========================================================================== */
+
+/* الأساسيات والمشتركات */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#landscape-screen, #style4-screen {
+    display: none !important;
+}
+
+:root {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #084372 0%, #06355d 40%, #042442 75%, #03182d 100%);
+    --bg-card: #052440;
+    --bg-card-border: rgba(255, 255, 255, 0.08);
+    --bg-prayer-card: #052643;
+    --bg-active-row: linear-gradient(90deg, #0d5d9b 0%, #116db5 100%);
+    --text-white: #ffffff;
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #e5be59;
+    --text-gold-bright: #f0c558;
+    --text-blue-dim: #7ec6f8;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #03182d;
+    --font-arabic: "Alyamama", "Noto Kufi Arabic", sans-serif;
+    --font-numbers: "Fjalla One", "Roboto Mono", monospace;
+}
+
+/* ==========================================================================
+   مجموعة الستايلات والألوان المتنوعة لمواقيت الصلاة في style2.css
+   تتغير تلقائياً عند النقر على اسم الفجر (13 ستايل فاخر)
+   ========================================================================== */
+
+/* ستايل 0: الأزرق الملكي والذهبي الأصيل (Royal Sapphire & Gold) */
+body.theme-0, body[data-theme="0"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #084372 0%, #06355d 40%, #042442 75%, #03182d 100%);
+    --bg-card: #052440;
+    --bg-card-border: rgba(255, 255, 255, 0.09);
+    --bg-prayer-card: #052643;
+    --bg-active-row: linear-gradient(90deg, #0d5d9b 0%, #116db5 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #e5be59;
+    --text-gold-bright: #f0c558;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #03182d;
+}
+
+/* ستايل 1: الأخضر الزمردي والذهبي النبوي (Prophetic Emerald & Rich Gold) */
+body.theme-1, body[data-theme="1"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #064e3b 0%, #04392b 40%, #022c22 75%, #011a14 100%);
+    --bg-card: #032b21;
+    --bg-card-border: rgba(255, 255, 255, 0.09);
+    --bg-prayer-card: #02291f;
+    --bg-active-row: linear-gradient(90deg, #047857 0%, #059669 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #f59e0b;
+    --text-gold-bright: #fbbf24;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #011a14;
+}
+
+/* ستايل 2: الأسود الكعبوي الفاخر والذهب الخالص (Kaaba Charcoal & Imperial Gold) */
+body.theme-2, body[data-theme="2"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #18181b 0%, #111114 45%, #09090b 80%, #040405 100%);
+    --bg-card: #121216;
+    --bg-card-border: rgba(234, 179, 8, 0.22);
+    --bg-prayer-card: #0e0e12;
+    --bg-active-row: linear-gradient(90deg, #27272a 0%, #3f3f46 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #f4f4f5;
+    --text-gold: #eab308;
+    --text-gold-bright: #facc15;
+    --border-divider: rgba(234, 179, 8, 0.15);
+    --body-bg: #040405;
+}
+
+/* ستايل 3: العنابي الأندلسي الداكن والذهب (Andalusian Ruby & Antique Gold) */
+body.theme-3, body[data-theme="3"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #4a0c1b 0%, #380814 40%, #26050e 75%, #180208 100%);
+    --bg-card: #27060e;
+    --bg-card-border: rgba(255, 255, 255, 0.09);
+    --bg-prayer-card: #23050c;
+    --bg-active-row: linear-gradient(90deg, #831843 0%, #9d174d 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #fcd34d;
+    --text-gold-bright: #fbbf24;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #180208;
+}
+
+/* ستايل 4: الفيروزي العثماني المضيء (Ottoman Turquoise & Warm Amber) */
+body.theme-4, body[data-theme="4"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #0f5854 0%, #0a423f 40%, #06312f 75%, #031d1c 100%);
+    --bg-card: #073432;
+    --bg-card-border: rgba(20, 184, 166, 0.25);
+    --bg-prayer-card: #052c2a;
+    --bg-active-row: linear-gradient(90deg, #0d9488 0%, #14b8a6 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #fde047;
+    --text-gold-bright: #fef08a;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #031d1c;
+}
+
+/* ستايل 5: الكحلي النيلي وسماء الليل (Midnight Indigo & Luminous Gold) */
+body.theme-5, body[data-theme="5"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #1e1b4b 0%, #17143e 40%, #0f0e2b 75%, #070617 100%);
+    --bg-card: #121035;
+    --bg-card-border: rgba(255, 255, 255, 0.09);
+    --bg-prayer-card: #0f0e2d;
+    --bg-active-row: linear-gradient(90deg, #3730a3 0%, #4338ca 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #fbbf24;
+    --text-gold-bright: #fde68a;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #070617;
+}
+
+/* ستايل 6: البنفسجي المخملي الفاخر (Quranic Royal Violet & Gold) */
+body.theme-6, body[data-theme="6"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #3b0764 0%, #2e054f 40%, #200338 75%, #130122 100%);
+    --bg-card: #22033c;
+    --bg-card-border: rgba(255, 255, 255, 0.09);
+    --bg-prayer-card: #1c0232;
+    --bg-active-row: linear-gradient(90deg, #6b21a8 0%, #7e22ce 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #facc15;
+    --text-gold-bright: #fef08a;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #130122;
+}
+
+/* ستايل 7: الخشب العودي والذهب الدمشقي (Oud Wood & Amber Gold) */
+body.theme-7, body[data-theme="7"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #381c10 0%, #2b150b 40%, #1e0d06 75%, #120703 100%);
+    --bg-card: #200f07;
+    --bg-card-border: rgba(245, 158, 11, 0.18);
+    --bg-prayer-card: #1a0b05;
+    --bg-active-row: linear-gradient(90deg, #78350f 0%, #92400e 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #fbbf24;
+    --text-gold-bright: #fde68a;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #120703;
+}
+
+/* ستايل 8: الزيتي الهادئ والبرونزي (Olive Sage & Antique Bronze) */
+body.theme-8, body[data-theme="8"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #1e3321 0%, #162719 40%, #101c12 75%, #0a120b 100%);
+    --bg-card: #121f14;
+    --bg-card-border: rgba(255, 255, 255, 0.09);
+    --bg-prayer-card: #0e1a10;
+    --bg-active-row: linear-gradient(90deg, #2d5532 0%, #36673d 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #eab308;
+    --text-gold-bright: #fde047;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #0a120b;
+}
+
+/* ستايل 9: التيتانيوم العصري الفضي (Slate Titanium & Sky Ice) */
+body.theme-9, body[data-theme="9"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #1e293b 0%, #172030 40%, #0f172a 75%, #080d19 100%);
+    --bg-card: #111a2c;
+    --bg-card-border: rgba(56, 189, 248, 0.2);
+    --bg-prayer-card: #0d1524;
+    --bg-active-row: linear-gradient(90deg, #0284c7 0%, #0369a1 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #f8fafc;
+    --text-gold: #38bdf8;
+    --text-gold-bright: #7dd3fc;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #080d19;
+}
+
+/* ستايل 10: الكحلي مع الليموني البراق (High-Contrast Navy & Solar Lime) */
+body.theme-10, body[data-theme="10"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #0c2340 0%, #081a30 40%, #051120 75%, #020810 100%);
+    --bg-card: #07172b;
+    --bg-card-border: rgba(250, 204, 21, 0.25);
+    --bg-prayer-card: #051324;
+    --bg-active-row: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #facc15;
+    --text-gold-bright: #a3e635;
+    --border-divider: rgba(255, 255, 255, 0.14);
+    --body-bg: #020810;
+}
+
+/* ستايل 11: النحاسي الكستنائي والغروب الصحراوي (Desert Copper & Sunset Glow) */
+body.theme-11, body[data-theme="11"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #3d140a 0%, #2f0e06 40%, #200803 75%, #130401 100%);
+    --bg-card: #220904;
+    --bg-card-border: rgba(249, 115, 22, 0.22);
+    --bg-prayer-card: #1c0703;
+    --bg-active-row: linear-gradient(90deg, #9a3412 0%, #b45309 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #ffffff;
+    --text-gold: #fed7aa;
+    --text-gold-bright: #ffedd5;
+    --border-divider: rgba(255, 255, 255, 0.12);
+    --body-bg: #130401;
+}
+
+/* ستايل 12: الفخامة الذهبية الخالصة (Imperial Gold & Royal Onyx) */
+body.theme-12, body[data-theme="12"] {
+    --bg-screen-gradient: radial-gradient(circle at 50% 25%, #2a2007 0%, #1e1704 40%, #140f02 75%, #0a0801 100%);
+    --bg-card: #161103;
+    --bg-card-border: rgba(234, 179, 8, 0.3);
+    --bg-prayer-card: #110d02;
+    --bg-active-row: linear-gradient(90deg, #854d0e 0%, #a16207 100%);
+    --text-title: #ffffff;
+    --text-clock: #ffffff;
+    --text-row: #fef08a;
+    --text-gold: #eab308;
+    --text-gold-bright: #fde047;
+    --border-divider: rgba(234, 179, 8, 0.2);
+    --body-bg: #0a0801;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--body-bg, #03182d);
+    font-family: var(--font-arabic);
+    color: var(--text-row, #ffffff);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease;
+}
+
+/* ==========================================================================
+   تخطيط الشاشة العمودي ودعم التدوير للشاشات الأفقية (TV Mode)
+   ========================================================================== */
+.mosque-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    background: var(--bg-screen-gradient);
+    padding: clamp(14px, 2vw, 24px) clamp(16px, 2.5vw, 28px);
+    z-index: 1;
+}
+
+@media (orientation: landscape) {
+    .mosque-screen {
+        width: 100vh !important;
+        height: 100vw !important;
+        transform: rotate(90deg) translateY(-100%);
+        transform-origin: top left;
+    }
+}
+
+@media (orientation: portrait) {
+    .mosque-screen {
+        width: 100vw !important;
+        height: 100vh !important;
+        transform: none;
+    }
+}
+
+/* الحاوية الداخلية المتناسقة */
+.fit-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+/* خلفية الزخرفة الإسلامية الهندسية في الأسفل (كما في الصورة) */
+.soft-pattern {
+    display: block !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 38%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%2338bdf8' stroke-width='0.8' stroke-opacity='0.12'%3E%3Cpath d='M60 0 L120 60 L60 120 L0 60 Z'/%3E%3Cpath d='M0 0 L120 120 M120 0 L0 120'/%3E%3Ccircle cx='60' cy='60' r='42'/%3E%3Ccircle cx='60' cy='60' r='24'/%3E%3Cpolygon points='60,18 70,42 94,42 75,56 82,80 60,66 38,80 45,56 26,42 50,42'/%3E%3Cpolygon points='60,102 70,78 94,78 75,64 82,40 60,54 38,40 45,64 26,78 50,78'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    background-size: 140px 140px;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 1;
+    mask-image: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+}
+
+/* ==========================================================================
+   القسم العلوي: اسم المسجد + بطاقة الساعة الحالية
+   ========================================================================== */
+.clock-frame {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0 4px !important;
+    margin-bottom: clamp(6px, 1.2vh, 14px) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* اسم المسجد (مسجد النور) على جانب الشاشة */
+#mosque-title, .mosque-title {
+    color: var(--text-title, #ffffff) !important;
+    font-family: var(--font-arabic) !important;
+    font-size: clamp(34px, 5.2vw, 68px) !important;
+    font-weight: 800 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.5px !important;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.45) !important;
+    margin: 0 !important;
+    text-align: right !important;
+    max-width: 45% !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    cursor: pointer;
+}
+
+/* بطاقة الساعة الكبيرة في الجهة المقابلة */
+.clock-frame time, #live-clock {
+    background: var(--bg-card) !important;
+    border: 2px solid var(--bg-card-border) !important;
+    border-radius: clamp(16px, 2.5vw, 24px) !important;
+    padding: clamp(6px, 1.2vh, 12px) clamp(20px, 3.5vw, 38px) !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--text-clock, #ffffff) !important;
+    font-family: var(--font-numbers) !important;
+    font-size: clamp(60px, 9.5vw, 126px) !important;
+    font-weight: 800 !important;
+    line-height: 0.95 !important;
+    letter-spacing: 2px !important;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+}
+
+/* إخفاء مؤشر AM / PM نهائياً من ستايل 2 */
+.clock-period {
+    display: none !important;
+}
+
+/* ==========================================================================
+   شريط التاريخ الموحد (السبت، ٥ أيلول، ٢٠٢٤ | ١٤ ربيع الأول ١٤٤٨)
+   ========================================================================== */
+.date-block {
+    background: var(--bg-card) !important;
+    border: 1.5px solid var(--bg-card-border) !important;
+    border-radius: clamp(12px, 1.8vw, 18px) !important;
+    margin: clamp(4px, 1vh, 10px) 0 clamp(10px, 1.8vh, 18px) !important;
+    padding: clamp(8px, 1.2vh, 14px) clamp(16px, 3vw, 30px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25) !important;
+    width: 100% !important;
+}
+
+.date-block > div {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: clamp(8px, 1.5vw, 18px) !important;
+    width: 100% !important;
+}
+
+.date-block .weekday,
+.date-block .date-card,
+.date-block .date-value {
+    color: var(--text-gold) !important;
+    font-family: var(--font-arabic) !important;
+    font-size: clamp(18px, 2.6vw, 34px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+.date-block .date-card .day-number {
+    font-family: var(--font-arabic), var(--font-numbers) !important;
+    font-weight: 800 !important;
+    color: var(--text-gold) !important;
+    margin-left: 4px !important;
+}
+
+.date-block .date-card .month-name {
+    font-weight: 700 !important;
+    color: var(--text-gold) !important;
+}
+
+/* إزالة أي خط أو فاصل فوق أو بجانب التاريخ الهجري */
+.date-block .hijri-card::before,
+.date-block .hijri-card::after,
+#live-hijri::before,
+#live-hijri::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* ==========================================================================
+   جدول مواقيت الصلاة (الحاوية الرئيسية ذات الأعمدة الثلاثة الدقيقة)
+   ========================================================================== */
+.prayer-list {
+    background: var(--bg-prayer-card) !important;
+    border: 2px solid var(--bg-card-border) !important;
+    border-radius: clamp(18px, 2.5vw, 26px) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    justify-content: stretch !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35) !important;
+    margin-bottom: clamp(10px, 1.6vh, 18px) !important;
+}
+
+/* كل صف صلاة مقسم إلى 3 أعمدة متناسقة */
+.prayer-row {
+    display: flex !important;
+    flex-direction: row !important;
+    direction: ltr !important;
+    align-items: center !important;
+    flex: 1 1 0 !important;
+    position: relative !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-bottom: 2px solid var(--border-divider) !important;
+    transition: background 0.3s ease, color 0.3s ease !important;
+}
+
+.prayer-row:last-child {
+    border-bottom: none !important;
+}
+
+/* العمود 1 (اليسار): وقت الإقامة (+15) */
+.prayer-row .prayer-iqama {
+    order: 1 !important;
+    width: 28% !important;
+    flex: 0 0 28% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    direction: ltr !important;
+    font-family: var(--font-numbers) !important;
+    font-size: clamp(34px, 5.2vw, 68px) !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    color: var(--text-row, #ffffff) !important;
+    border-right: 2px solid var(--border-divider) !important;
+    height: 100% !important;
+}
+
+/* العمود 2 (الوسط): وقت الصلاة (4:10, 12:01, ...) */
+.prayer-row time {
+    order: 2 !important;
+    width: 44% !important;
+    flex: 0 0 44% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    direction: ltr !important;
+    font-family: var(--font-numbers) !important;
+    font-size: clamp(48px, 7.2vw, 96px) !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    letter-spacing: 1px !important;
+    color: var(--text-row, #ffffff) !important;
+    border-right: 2px solid var(--border-divider) !important;
+    height: 100% !important;
+}
+
+/* العمود 3 (اليمين): اسم الصلاة (الفجر، الظهر، ...) */
+.prayer-row strong {
+    order: 3 !important;
+    width: 28% !important;
+    flex: 0 0 28% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-family: var(--font-arabic) !important;
+    font-size: clamp(30px, 4.6vw, 60px) !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    color: var(--text-row, #ffffff) !important;
+    height: 100% !important;
+    white-space: nowrap !important;
+}
+
+/* ==========================================================================
+   الصلاة القادمة / الحالية المميزة (Active Next Prayer Row)
+   مثل صف "الظهر" في الصورة باللون الأزرق الملكي والنص الذهبي والمؤشر المثلث
+   ========================================================================== */
+.prayer-row.next-prayer {
+    background: var(--bg-active-row) !important;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.prayer-row.next-prayer .prayer-iqama,
+.prayer-row.next-prayer time,
+.prayer-row.next-prayer strong {
+    color: var(--text-gold-bright) !important;
+    text-shadow: 0 0 16px rgba(229, 190, 89, 0.45) !important;
+}
+
+/* إزالة السهم أو المثلث عند اسم الصلاة القادمة */
+.prayer-row.next-prayer::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* ==========================================================================
+   الشريط السفلي: الأذان التالي فقط + حالة الموبايل صامت
+   ========================================================================== */
+.countdown-footer {
+    background: var(--bg-card) !important;
+    border: 1.5px solid var(--bg-card-border) !important;
+    border-radius: clamp(14px, 2.2vw, 22px) !important;
+    padding: clamp(10px, 1.5vh, 18px) clamp(20px, 3.5vw, 36px) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* إخفاء عمود الإقامة في هذا الستايل ليكون الفوتر للأذان التالي فقط */
+.countdown-footer #col-iqama {
+    display: none !important;
+}
+
+.countdown-footer #col-adhan {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
+/* النص الذهبي لعنوان الأذان التالي */
+.countdown-column span,
+#label-iqama,
+#label-adhan {
+    color: var(--text-gold) !important;
+    font-family: var(--font-arabic) !important;
+    font-size: clamp(26px, 4.2vw, 54px) !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+}
+
+/* الأرقام الذهبية الكبيرة للعد التنازلي للأذان التالي */
+.countdown-column strong,
+#countdown-iqama,
+#countdown-adhan {
+    color: var(--text-gold) !important;
+    font-family: var(--font-numbers) !important;
+    font-size: clamp(38px, 6.2vw, 84px) !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    text-shadow: 0 0 16px rgba(229, 190, 89, 0.3) !important;
+}
+
+/* حاوية تنبيه الموبايل صامت في الفوتر */
+#col-adhan:has(.mobile-silent-container) {
+    justify-content: center !important;
+}
+
+#countdown-adhan:has(.mobile-silent-container) {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: initial !important;
+    line-height: normal !important;
+    text-shadow: none !important;
+}
+
+.countdown-footer .mobile-silent-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: clamp(12px, 2.5vw, 26px) !important;
+    width: 100% !important;
+    animation: gentle-silent-pulse 2s infinite ease-in-out;
+}
+
+/* عداد الدقائق التنازلي داخل صف الصلاة القادمة عندما يبقى أقل من ساعة */
+.prayer-row .prayer-iqama.is-countdown {
+    color: var(--text-gold-bright) !important;
+}
+
+.prayer-row .prayer-iqama .countdown-minutes,
+.prayer-row .prayer-iqama .countdown-mini {
+    font-family: var(--font-numbers) !important;
+    font-size: clamp(34px, 5.2vw, 68px) !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+    display: inline-flex !important;
+    align-items: baseline !important;
+    justify-content: center !important;
+    direction: ltr !important;
+    animation: gentle-countdown-glow 2s infinite ease-in-out;
+}
+
+.prayer-row .prayer-iqama .countdown-minutes .minute-unit {
+    font-family: var(--font-arabic) !important;
+    font-size: clamp(18px, 2.6vw, 36px) !important;
+    font-weight: 700 !important;
+    color: var(--text-gold) !important;
+    margin-left: 4px !important;
+}
+
+/* عند الصفر: مؤشر الموبايل صامت في صف الصلاة */
+.prayer-row .prayer-iqama.is-silent-mode {
+    color: #ef4444 !important;
+}
+
+.prayer-row .prayer-iqama .silent-icon-small {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    animation: gentle-silent-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes gentle-countdown-glow {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 16px rgba(229, 190, 89, 0.6);
+    }
+    50% {
+        opacity: 0.88;
+        text-shadow: 0 0 8px rgba(229, 190, 89, 0.3);
+    }
+}
+
+@keyframes gentle-silent-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.06);
+        opacity: 0.9;
+    }
+}
+
+/* مؤشر PM / AM للعد التنازلي إن وُجد - مخفي نهائياً */
+.countdown-column strong .period,
+.countdown-period {
+    display: none !important;
+}
+
+/* ==========================================================================
+   تنسيق نافذة الإعدادات (Settings Modal) بنمط الأزرق الملكي
+   ========================================================================== */
+#settings-modal.settings-layer {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(3, 24, 45, 0.88) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    z-index: 99999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 16px !important;
+    direction: rtl !important;
+}
+
+#settings-modal[style*="display: none"],
+#settings-modal[style*="display:none"] {
+    display: none !important;
+}
+
+#settings-modal[style*="display: flex"],
+#settings-modal[style*="display:flex"],
+#settings-modal[style*="display: grid"],
+#settings-modal[style*="display:grid"] {
+    display: flex !important;
+}
+
+.settings-panel {
+    background: #062b4c !important;
+    border: 2px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+    width: 96% !important;
+    max-width: 600px !important;
+    max-height: 92vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    padding: 20px 24px !important;
+    color: #ffffff !important;
+}
+
+.settings-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+    padding-bottom: 14px !important;
+    margin-bottom: 12px !important;
+}
+
+.settings-header h2 {
+    color: var(--text-gold) !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+}
+
+.settings-description {
+    color: #cbd5e1 !important;
+    font-size: 14px !important;
+    margin-bottom: 14px !important;
+}
+
+.settings-row {
+    background: #04203a !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.settings-row strong {
+    color: #ffffff !important;
+    font-size: 17px !important;
+}
+
+.settings-row small {
+    color: #94a3b8 !important;
+    display: block !important;
+    font-size: 12px !important;
+}
+
+.minute-control {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.minute-control button {
+    background: #0f5892 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.2s !important;
+}
+
+.minute-control button:hover {
+    background: #1470b8 !important;
+}
+
+.minute-display {
+    min-width: 54px !important;
+    text-align: center !important;
+    font-family: var(--font-numbers) !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: var(--text-gold) !important;
+}
+
+.settings-actions {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 16px !important;
+}
+
+.save-button {
+    flex: 2 !important;
+    background: #116cb3 !important;
+    color: #ffffff !important;
+    font-family: var(--font-arabic) !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    cursor: pointer !important;
+}
+
+.save-button:hover {
+    background: #1580d4 !important;
+}
+
+.reset-button {
+    flex: 1 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #cbd5e1 !important;
+    font-family: var(--font-arabic) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    cursor: pointer !important;
+}
+
+.settings-close {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+}
+
+.nav-scroll-btn {
+    background: #0f5892 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    cursor: pointer !important;
+}
+
+/* ==========================================================================
+   شارة إشعار اسم الستايل عند النقر على الفجر
+   ========================================================================== */
+#theme-toast {
+    position: fixed !important;
+    top: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-25px) !important;
+    background: rgba(8, 14, 24, 0.95) !important;
+    color: var(--text-gold-bright, #f0c558) !important;
+    border: 1.5px solid var(--text-gold, #e5be59) !important;
+    border-radius: 40px !important;
+    padding: 10px 28px !important;
+    font-family: var(--font-arabic) !important;
+    font-size: clamp(16px, 2.2vw, 26px) !important;
+    font-weight: 800 !important;
+    pointer-events: none !important;
+    z-index: 99999 !important;
+    opacity: 0 !important;
+    transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65) !important;
+    white-space: nowrap !important;
+    direction: rtl !important;
+    text-shadow: 0 0 14px rgba(229, 190, 89, 0.4) !important;
+}
+
+#theme-toast.show-theme-toast {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+}

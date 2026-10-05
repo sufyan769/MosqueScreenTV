@@ -1,0 +1,1561 @@
+/* ==========================================================================
+   style1.css - الستايلات العمودية لشاشة مواقيت الصلاة (Vertical Mosque Display)
+   ========================================================================== */
+
+/* الأساسيات والمشتركات */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+#landscape-screen, #style4-screen {
+    display: none !important;
+}
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* التنسيقات العامة والقواعد المشتركة للوحة الإعدادات والمواقيت */
+#mosque-title, .mosque-title {
+        font-family: "decotype-thuluth", "Traditional Arabic", serif !important;
+    }
+    #live-clock, .clock-frame time {
+        font-family: "Fjalla One", Arial, sans-serif !important;
+    }
+    .clock-period {
+        display: none !important;
+    }
+    .countdown-column strong {
+        font-family: "Fjalla One", monospace !important;
+        font-variant-numeric: tabular-nums !important;
+        letter-spacing: 0px !important;
+    }
+    .prayer-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+    .prayer-row time {
+        flex: 1 1 0 !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+    }
+    .prayer-row strong {
+        flex: 1 1 0 !important;
+        text-align: right !important;
+        white-space: nowrap !important;
+    }
+    .prayer-iqama {
+        flex: 0 0 auto !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        direction: ltr !important;
+        font-family: "Fjalla One", "Roboto Mono", monospace !important;
+        font-size: clamp(24px, 3.4vw, 52px) !important;
+        font-weight: 700 !important;
+        line-height: 1 !important;
+        letter-spacing: 0.5px !important;
+        font-variant-numeric: tabular-nums !important;
+        color: var(--text-prayer-time, var(--brass, #d9b45a)) !important;
+        opacity: 0.88 !important;
+        padding: 2px 12px !important;
+        user-select: none !important;
+    }
+    .prayer-row.next-prayer .prayer-iqama {
+        color: var(--text-prayer-active, #ffffff) !important;
+        opacity: 1 !important;
+        text-shadow: 0 0 14px rgba(255, 255, 255, 0.4) !important;
+    }
+
+    /* ضمان بقاء اسم الشهر الهجري والميلادي دائماً في سطر واحد في جميع الستايلات */
+    .date-card,
+    .date-value,
+    .month-name,
+    #live-hijri,
+    #live-gregorian,
+    #live-hijri span,
+    #live-gregorian span {
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+        overflow-wrap: normal !important;
+    }
+    .date-value {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+        gap: 6px !important;
+    }
+    .month-name {
+        display: inline-block !important;
+        white-space: nowrap !important;
+    }
+
+    @keyframes mobilePulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.08); opacity: 0.88; }
+    }
+
+    /* =========================================================
+       توحيد تصميم لوحة الإعدادات وجعلها متوافقة 100% مع ريموت TV
+       ========================================================= */
+    #settings-modal.settings-layer {
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 99999 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(6, 10, 16, 0.92) !important;
+        backdrop-filter: blur(12px) !important;
+        padding: 20px !important;
+        direction: rtl !important;
+    }
+    
+    #settings-modal[style*="display: none"],
+    #settings-modal[style*="display:none"] {
+        display: none !important;
+    }
+
+    #settings-modal[style*="display: flex"],
+    #settings-modal[style*="display:flex"],
+    #settings-modal[style*="display: grid"],
+    #settings-modal[style*="display:grid"] {
+        display: flex !important;
+    }
+    
+    #settings-modal .settings-panel {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 95% !important;
+        max-width: 900px !important;
+        height: 92vh !important;
+        max-height: 92vh !important;
+        padding: 22px 28px !important;
+        border-radius: 20px !important;
+        border: 2px solid rgba(217, 180, 90, 0.5) !important;
+        background: #0f172a !important;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85) !important;
+        color: #f8fafc !important;
+        font-family: "Noto Kufi Arabic", "Tajawal", sans-serif !important;
+        overflow-y: auto !important;
+    }
+
+    #settings-modal .settings-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding-bottom: 12px !important;
+        border-bottom: 2px solid rgba(217, 180, 90, 0.3) !important;
+        margin-bottom: 10px !important;
+    }
+    
+    #settings-modal .settings-header span {
+        display: block !important;
+        color: #6c4e04 !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+    }
+    
+    #settings-modal .settings-header h2 {
+        margin: 2px 0 0 !important;
+        color: #ffffff !important;
+        font-size: 26px !important;
+        font-weight: 800 !important;
+    }
+
+    #settings-modal .settings-close {
+        display: grid !important;
+        place-items: center !important;
+        width: 44px !important;
+        height: 44px !important;
+        border: 2px solid rgba(217, 180, 90, 0.5) !important;
+        border-radius: 12px !important;
+        color: #d9b45a !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        cursor: pointer !important;
+        font-size: 28px !important;
+        font-weight: bold !important;
+        transition: all 0.15s ease !important;
+    }
+
+    #settings-modal .settings-description {
+        color: #94a3b8 !important;
+        font-size: 14px !important;
+        margin-bottom: 12px !important;
+    }
+
+    #settings-modal .settings-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 14px !important;
+        padding: 8px 14px !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 12px !important;
+        background: rgba(255, 255, 255, 0.04) !important;
+        margin-bottom: 8px !important;
+    }
+
+    #settings-modal .settings-row strong {
+        color: #ffffff !important;
+        font-size: 17px !important;
+    }
+
+    #settings-modal .settings-row small {
+        color: #94a3b8 !important;
+        font-size: 12px !important;
+    }
+
+    #settings-modal .minute-control button {
+        width: 42px !important;
+        height: 42px !important;
+        border: 2px solid rgba(217, 180, 90, 0.6) !important;
+        border-radius: 8px !important;
+        background: rgba(217, 180, 90, 0.15) !important;
+        color: #d9b45a !important;
+        font-size: 22px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        transition: all 0.15s ease !important;
+    }
+
+    #settings-modal .minute-display {
+        height: 42px !important;
+        min-width: 80px !important;
+        padding: 0 10px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 2px solid rgba(217, 180, 90, 0.5) !important;
+        border-radius: 8px !important;
+        background: #090d14 !important;
+        color: #38edf6 !important;
+        font-size: 16px !important;
+        font-weight: 800 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        font-family: "Fjalla One", "Roboto Mono", monospace !important;
+        user-select: none !important;
+    }
+
+    #settings-modal .nav-scroll-btn {
+        height: 40px !important;
+        padding: 0 14px !important;
+        border: 2px solid rgba(56, 237, 246, 0.6) !important;
+        border-radius: 8px !important;
+        background: rgba(56, 237, 246, 0.15) !important;
+        color: #38edf6 !important;
+        font-size: 15px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        font-family: var(--font-arabic) !important;
+        transition: all 0.15s ease !important;
+    }
+
+    #settings-modal button:focus,
+    #settings-modal input:focus {
+        outline: none !important;
+        border-color: #38edf6 !important;
+        box-shadow: 0 0 20px rgba(56, 237, 246, 0.7) !important;
+        transform: scale(1.06) !important;
+        background: rgba(56, 237, 246, 0.25) !important;
+        color: #ffffff !important;
+    }
+
+    #settings-modal .settings-actions button {
+        min-height: 48px !important;
+        padding: 8px 28px !important;
+        border-radius: 10px !important;
+        font-size: 16px !important;
+        font-weight: 800 !important;
+        cursor: pointer !important;
+    }
+    
+    #settings-modal .reset-button {
+        border: 2px solid rgba(239, 68, 68, 0.7) !important;
+        color: #ef4444 !important;
+        background: rgba(239, 68, 68, 0.12) !important;
+    }
+
+    #settings-modal .save-button {
+        border: 2px solid #d9b45a !important;
+        color: #0f172a !important;
+        background: #d9b45a !important;
+    }
+
+/* ==================== THEME 0: index.html ==================== */
+body.theme-0, body[data-theme="0"], body:not([class*="theme-"]):not([data-theme]) {
+  --font-arabic: "Readex Pro", "Noto Sans Arabic", "Cairo", sans-serif;
+        --font-numbers: "Fjalla One", Arial, sans-serif;
+        --font-clock: "Share Tech Mono", "Courier New", monospace;
+        --bg-main: #f8fbf9;
+        --bg-prayer: rgba(255, 255, 255, 0.45);
+        --bg-prayer-active: rgba(24, 93, 56, 0.12);
+        --text-primary: #0b0d0d;
+        --text-prayer-name: #080b0b;
+        --text-prayer-time: #6a062b;
+        --text-prayer-active: #185d38;
+        --text-clock: #185d38;
+        --text-date: #155b38;
+        --text-gregorian: #3b4d43;
+        --border-prayer: rgba(97, 103, 100, 0.65);
+        --border-prayer-active: #185d38;
+        --footer-bg: #155b38;
+        --footer-text: #ffffff;
+        --clock-size: clamp(48px, 13vw, 135px);
+        --weekday-size: clamp(18px, 4vw, 42px);
+        --date-size: clamp(16px, 3.6vw, 38px);
+        --prayer-name-size: clamp(30px, 8vw, 90px);
+        --prayer-time-size: clamp(40px, 11vw, 120px);
+        --countdown-label-size: clamp(12px, 2.6vw, 28px);
+        --countdown-number-size: clamp(26px, 7.8vw, 82px);
+        --container-padding: 8px 16px 0;
+}
+body.theme-0, body[data-theme="0"], body:not([class*="theme-"]):not([data-theme]) {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-0 .mosque-screen, body[data-theme="0"] .mosque-screen, body:not([class*="theme-"]):not([data-theme]) .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate;
+        display: flex; flex-direction: column;
+        width: 100vh; height: 100vw;
+        margin: 0; padding: var(--container-padding);
+        overflow: hidden; background-color: #f8fbf9;
+        background-image: url('bg.jpg') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        transform: rotate(90deg) translateY(-100%);
+        transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-0 .mosque-screen, body[data-theme="0"] .mosque-screen, body:not([class*="theme-"]):not([data-theme]) .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-0 .fit-content, body[data-theme="0"] .fit-content, body:not([class*="theme-"]):not([data-theme]) .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-0 .prayer-row, body[data-theme="0"] .prayer-row, body:not([class*="theme-"]):not([data-theme]) .prayer-row,
+body.theme-0 .clock-frame, body[data-theme="0"] .clock-frame, body:not([class*="theme-"]):not([data-theme]) .clock-frame,
+body.theme-0 .date-card, body[data-theme="0"] .date-card, body:not([class*="theme-"]):not([data-theme]) .date-card{
+  background: rgba(255, 255, 255, 0.92) !important; backdrop-filter: blur(4px);
+}
+body.theme-0 .soft-pattern, body[data-theme="0"] .soft-pattern, body:not([class*="theme-"]):not([data-theme]) .soft-pattern{
+  display: none !important;
+}
+body.theme-0 .clock-frame, body[data-theme="0"] .clock-frame, body:not([class*="theme-"]):not([data-theme]) .clock-frame{
+  display: grid; place-items: center; flex-shrink: 0; width: min(96%, 950px);
+        min-height: clamp(90px, 12vh, 160px); margin: 0 auto;
+        border: 3px solid rgba(24, 93, 56, 0.3); border-radius: 999px;
+        background: rgba(255, 255, 255, 0.75);
+        box-shadow: 0 6px 24px rgba(24, 93, 56, 0.12), inset 0 0 0 6px rgba(255, 255, 255, 0.5);
+}
+body.theme-0 .clock-frame time, body[data-theme="0"] .clock-frame time, body:not([class*="theme-"]):not([data-theme]) .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock);
+        font-size: clamp(65px, 8.5vw, 130px) !important; font-weight: 800; letter-spacing: 4px; line-height: 1;
+        white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+body.theme-0 .date-block, body[data-theme="0"] .date-block, body:not([class*="theme-"]):not([data-theme]) .date-block{
+  display: flex; align-items: center; flex-direction: row; justify-content: center;
+        gap: clamp(10px, 2vw, 25px); flex-shrink: 0; width: 100%; max-width: 850px;
+        margin: clamp(8px, 1.5vh, 18px) auto clamp(8px, 1.8vh, 20px); flex-wrap: wrap;
+}
+body.theme-0 .weekday, body[data-theme="0"] .weekday, body:not([class*="theme-"]):not([data-theme]) .weekday{
+  width: 100%; text-align: center; color: var(--text-date); font-family: var(--font-arabic); font-size: var(--weekday-size); font-weight: 800; line-height: 1.15; margin-bottom: 4px;
+}
+body.theme-0 .date-card, body[data-theme="0"] .date-card, body:not([class*="theme-"]):not([data-theme]) .date-card{
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: clamp(8px, 1.5vh, 16px) clamp(16px, 3vw, 35px);
+        border: 2px solid rgba(24,93,56,0.25); border-radius: 16px;
+        background: rgba(255,255,255,0.65); box-shadow: 0 2px 10px rgba(24,93,56,0.08);
+        min-width: clamp(120px, 20vw, 200px); flex: 1;
+}
+body.theme-0 .date-card .date-value, body[data-theme="0"] .date-card .date-value, body:not([class*="theme-"]):not([data-theme]) .date-card .date-value{
+  color: #0b0d0d; font-size: clamp(18px, 3.5vw, 38px); font-weight: 800; font-family: var(--font-arabic); line-height: 1.3; text-align: center;
+}
+body.theme-0 .date-card .date-value .day-number, body[data-theme="0"] .date-card .date-value .day-number, body:not([class*="theme-"]):not([data-theme]) .date-card .date-value .day-number{
+  font-family: var(--font-numbers); font-weight: 900;
+}
+body.theme-0 .prayer-list, body[data-theme="0"] .prayer-list, body:not([class*="theme-"]):not([data-theme]) .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-between; min-height: 0; width: 100%; max-width: 92%; margin: 0 auto; padding: 8px 0; gap: 8px;
+}
+body.theme-0 .prayer-row, body[data-theme="0"] .prayer-row, body:not([class*="theme-"]):not([data-theme]) .prayer-row{
+  display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; min-height: 0; padding: 0 32px; border: 2px solid var(--border-prayer); border-radius: 20px; background: var(--bg-prayer); overflow: hidden; direction: ltr;
+}
+body.theme-0 .prayer-row.next-prayer, body[data-theme="0"] .prayer-row.next-prayer, body:not([class*="theme-"]):not([data-theme]) .prayer-row.next-prayer{
+  border-color: var(--border-prayer-active); background: var(--bg-prayer-active); box-shadow: 0 4px 16px rgba(24,93,56,0.18);
+}
+body.theme-0 .prayer-row strong, body[data-theme="0"] .prayer-row strong, body:not([class*="theme-"]):not([data-theme]) .prayer-row strong{
+  color: var(--text-prayer-name); direction: rtl; font-family: var(--font-arabic); font-size: clamp(38px, 4.5vw, 68px) !important; font-weight: 700; line-height: 1; white-space: nowrap;
+}
+body.theme-0 .prayer-row.next-prayer strong, body[data-theme="0"] .prayer-row.next-prayer strong, body:not([class*="theme-"]):not([data-theme]) .prayer-row.next-prayer strong{
+  color: var(--text-prayer-active);
+}
+body.theme-0 .prayer-row time, body[data-theme="0"] .prayer-row time, body:not([class*="theme-"]):not([data-theme]) .prayer-row time{
+  color: var(--text-prayer-time); direction: ltr; font-family: var(--font-numbers); font-size: clamp(48px, 6vw, 92px) !important; font-weight: 800; line-height: 1; letter-spacing: .02em; white-space: nowrap;
+}
+body.theme-0 .prayer-row.next-prayer time, body[data-theme="0"] .prayer-row.next-prayer time, body:not([class*="theme-"]):not([data-theme]) .prayer-row.next-prayer time{
+  color: var(--text-prayer-active);
+}
+body.theme-0 .countdown-footer, body[data-theme="0"] .countdown-footer, body:not([class*="theme-"]):not([data-theme]) .countdown-footer{
+  display: grid; grid-template-columns: 1fr 1fr; flex: 0 0 clamp(85px, 12vh, 145px);
+        width: calc(100% + clamp(32px, 7vw, 84px)); margin-right: calc(clamp(16px, 3.5vw, 42px) * -1); margin-left: calc(clamp(16px, 3.5vw, 42px) * -1);
+        padding: clamp(10px, 1.5vh, 18px) clamp(16px, 3.5vw, 42px) 0; color: var(--footer-text); background: var(--footer-bg); direction: ltr; box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.15);
+}
+body.theme-0 .countdown-column, body[data-theme="0"] .countdown-column, body:not([class*="theme-"]):not([data-theme]) .countdown-column{
+  display: flex; align-items: center; flex-direction: column; justify-content: center; direction: rtl;
+}
+body.theme-0 .countdown-column span, body[data-theme="0"] .countdown-column span, body:not([class*="theme-"]):not([data-theme]) .countdown-column span{
+  font-family: var(--font-arabic); font-size: clamp(18px, 2.2vw, 32px) !important; font-weight: 700; line-height: 1.2; opacity: 0.95; white-space: nowrap;
+}
+body.theme-0 .countdown-column strong, body[data-theme="0"] .countdown-column strong, body:not([class*="theme-"]):not([data-theme]) .countdown-column strong{
+  margin-top: 4px; direction: ltr; font-family: var(--font-numbers); font-size: clamp(42px, 5.5vw, 82px) !important; font-weight: 800; line-height: 1; letter-spacing: .02em; white-space: nowrap;
+}
+
+/* ==================== THEME 1: index1.html ==================== */
+body.theme-1, body[data-theme="1"] {
+  --font-arabic: "Noto Kufi Arabic", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Roboto Mono", monospace;
+    --bg-main: #00c4b0;
+    --text-primary: #f4f7f5;
+    --text-prayer-name: #f4f7f5;
+    --text-prayer-time: #f4f7f5;
+    --text-prayer-active: #d9b45a;
+    --text-clock: #ffffff;
+    --text-date: #d9b45a;
+    --text-gregorian: #c7d0cc;
+    --text-secondary: #aebbb5;
+    --accent: #d9b45a;
+    --accent-light: #efd58b;
+    --line: rgba(217,180,90,.45);
+    --line-soft: rgba(255,255,255,.13);
+    --footer-bg: #006c73;
+    --footer-text: #ffffff;
+    --clock-size: clamp(70px, 10vw, 150px);
+    --weekday-size: clamp(22px, 3vw, 42px);
+    --date-size: clamp(18px, 2.5vw, 34px);
+    --prayer-name-size: clamp(42px, 6vw, 82px);
+    --prayer-time-size: clamp(62px, 8vw, 130px);
+    --countdown-label-size: clamp(18px, 2vw, 30px);
+    --countdown-number-size: clamp(45px, 5vw, 80px);
+    --container-padding: 18px 32px 0;
+}
+body.theme-1, body[data-theme="1"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-1 .mosque-screen, body[data-theme="1"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column;
+    width: 100vh; height: 100vw; margin: 0; padding: var(--container-padding); overflow: hidden;
+    color: var(--text-primary); background-color: var(--bg-main);
+    background-image: linear-gradient(rgba(4,14,12,.72), rgba(4,14,12,.82)), url('bg.jpg');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-1 .mosque-screen, body[data-theme="1"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-1 .fit-content, body[data-theme="1"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-1 .prayer-row, body[data-theme="1"] .prayer-row,
+body.theme-1 .clock-frame, body[data-theme="1"] .clock-frame,
+body.theme-1 .date-card, body[data-theme="1"] .date-card{
+  background: transparent !important; backdrop-filter: none !important; box-shadow: none !important;
+}
+body.theme-1 .soft-pattern, body[data-theme="1"] .soft-pattern{
+  display: none !important;
+}
+body.theme-1 .clock-frame, body[data-theme="1"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(100px, 14vh, 170px); margin: 0 auto; padding: 5px 0; border: none; background: transparent !important;
+}
+body.theme-1 .clock-frame time, body[data-theme="1"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: var(--clock-size) !important; font-weight: 600; letter-spacing: 5px; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+body.theme-1 .date-block, body[data-theme="1"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; flex-shrink: 0; width: 100%; margin: 2px auto 12px;
+}
+body.theme-1 .weekday, body[data-theme="1"] .weekday{
+  width: 100%; text-align: center; color: var(--accent); font-family: var(--font-arabic); font-size: var(--weekday-size); font-weight: 800; line-height: 1.2; margin: 0;
+}
+body.theme-1 .date-card, body[data-theme="1"] .date-card{
+  display: inline-flex; flex-direction: row; align-items: center; justify-content: center; padding: 0; border: none !important; background: transparent !important; gap: 12px;
+}
+body.theme-1 .date-card .date-value, body[data-theme="1"] .date-card .date-value{
+  color: var(--text-primary); font-size: var(--date-size); font-weight: 700; font-family: var(--font-arabic); line-height: 1.3; text-align: center;
+}
+body.theme-1 .date-card .date-value .day-number, body[data-theme="1"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers); font-weight: 700;
+}
+body.theme-1 .prayer-list, body[data-theme="1"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-evenly; min-height: 0; width: 100%; margin: 0 auto; padding: 5px 0; gap: 0;
+}
+body.theme-1 .prayer-row, body[data-theme="1"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; min-height: 0; padding: 0; border: none !important; background: transparent !important; direction: ltr;
+}
+body.theme-1 .prayer-row:not(:last-child)::after, body[data-theme="1"] .prayer-row:not(:last-child)::after{
+  content: ""; position: absolute; bottom: 0; left: 10%; width: 80%; height: 1px; background: var(--line-soft);
+}
+body.theme-1 .prayer-row strong, body[data-theme="1"] .prayer-row strong{
+  color: var(--text-prayer-name); direction: rtl; font-family: "Alyamama", sans-serif !important; font-size: var(--prayer-name-size) !important; font-weight: 900; line-height: 1; white-space: nowrap; text-align: right; flex: 1 1 0;
+}
+body.theme-1 .prayer-row.next-prayer strong, body[data-theme="1"] .prayer-row.next-prayer strong{
+  color: var(--accent-light);
+}
+body.theme-1 .prayer-row time, body[data-theme="1"] .prayer-row time{
+  color: var(--text-prayer-time); direction: ltr; font-family: var(--font-numbers); font-size: var(--prayer-time-size) !important; font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; text-align: left; font-variant-numeric: tabular-nums; flex: 1 1 0;
+}
+body.theme-1 .prayer-row.next-prayer time, body[data-theme="1"] .prayer-row.next-prayer time{
+  color: var(--accent);
+}
+body.theme-1 .prayer-row .prayer-iqama, body[data-theme="1"] .prayer-row .prayer-iqama{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(30px, 4.5vw, 65px) !important; font-weight: 700; text-align: center; flex: 0 0 auto; min-width: 80px;
+}
+body.theme-1 .prayer-row.next-prayer .prayer-iqama, body[data-theme="1"] .prayer-row.next-prayer .prayer-iqama{
+  color: var(--accent); text-shadow: 0 0 14px rgba(217, 180, 90, 0.5);
+}
+body.theme-1 .countdown-footer, body[data-theme="1"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(130px, 18vh, 210px); width: calc(100% + 64px); margin-right: -32px; margin-left: -32px; padding: 15px 20px; color: var(--footer-text); background: var(--footer-bg); direction: ltr; border-top: 1px solid rgba(217,180,90,.35);
+}
+body.theme-1 .countdown-column, body[data-theme="1"] .countdown-column{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; direction: rtl; white-space: nowrap;
+}
+body.theme-1 .countdown-column span, body[data-theme="1"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 2.5vw, 34px) !important; font-weight: 600; line-height: 1.2;
+}
+body.theme-1 .countdown-column strong, body[data-theme="1"] .countdown-column strong{
+  direction: ltr; color: #ffffff; font-family: var(--font-numbers); font-size: clamp(50px, 5.5vw, 90px) !important; font-weight: 700; line-height: 1;
+}
+
+/* ==================== THEME 2: index2.html ==================== */
+body.theme-2, body[data-theme="2"] {
+  --font-arabic: "decotype-thuluth", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Roboto Mono", monospace;
+    --bg-main: #005352;
+    --text-primary: #f4f7f5;
+    --text-prayer-name: #f4f7f5;
+    --text-prayer-time: #f4f7f5;
+    --text-prayer-active: #d9b45a;
+    --text-clock: #ffffff;
+    --text-date: #d9b45a;
+    --text-secondary: #aebbb5;
+    --accent: #d9b45a;
+    --accent-light: #efd58b;
+    --line-soft: rgba(255,255,255,.13);
+    --footer-bg: #0f5458;
+    --footer-text: #ffffff;
+    --clock-size: clamp(70px, 10vw, 150px);
+    --weekday-size: clamp(32px, 5vw, 62px);
+    --date-size: clamp(18px, 2.5vw, 34px);
+    --prayer-name-size: clamp(42px, 6vw, 82px);
+    --prayer-time-size: clamp(62px, 8vw, 130px);
+    --container-padding: 18px 32px 0;
+}
+body.theme-2, body[data-theme="2"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-2 .mosque-screen, body[data-theme="2"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column;
+    width: 100vh; height: 100vw; margin: 0; padding: var(--container-padding); overflow: hidden;
+    color: var(--text-primary); background-color: var(--bg-main);
+    background-image: linear-gradient(rgba(1, 99, 78, 0.831), rgb(0, 10, 30)), url('bg.jpg');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-2 .mosque-screen, body[data-theme="2"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-2 .fit-content, body[data-theme="2"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-2 .prayer-row, body[data-theme="2"] .prayer-row,
+body.theme-2 .clock-frame, body[data-theme="2"] .clock-frame,
+body.theme-2 .date-card, body[data-theme="2"] .date-card{
+  background: transparent !important; backdrop-filter: none !important; box-shadow: none !important;
+}
+body.theme-2 .clock-frame, body[data-theme="2"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(100px, 14vh, 170px); margin: 0 auto; padding: 5px 0; border: none; background: transparent !important;
+}
+body.theme-2 .clock-frame time, body[data-theme="2"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: var(--clock-size) !important; font-weight: 600; letter-spacing: 5px; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+body.theme-2 .date-block, body[data-theme="2"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; flex-shrink: 0; width: 100%; margin: 2px auto 12px;
+}
+body.theme-2 .weekday, body[data-theme="2"] .weekday{
+  width: 100%; text-align: center; color: var(--accent); font-family: var(--font-arabic); font-size: var(--weekday-size); font-weight: 800; line-height: 1.2; margin: 0;
+}
+body.theme-2 .date-card, body[data-theme="2"] .date-card{
+  display: inline-flex; flex-direction: row; align-items: center; justify-content: center; padding: 0; border: none !important; background: transparent !important; gap: 12px;
+}
+body.theme-2 .date-card .date-value, body[data-theme="2"] .date-card .date-value{
+  color: var(--text-primary); font-size: var(--date-size); font-weight: 700; font-family: var(--font-arabic); line-height: 1.3; text-align: center;
+}
+body.theme-2 .date-card .date-value .day-number, body[data-theme="2"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers); font-weight: 700;
+}
+body.theme-2 .prayer-list, body[data-theme="2"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-evenly; min-height: 0; width: 100%; margin: 0 auto; padding: 5px 0; gap: 0;
+}
+body.theme-2 .prayer-row, body[data-theme="2"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; min-height: 0; padding: 0; border: none !important; background: transparent !important; direction: ltr;
+}
+body.theme-2 .prayer-row:not(:last-child)::after, body[data-theme="2"] .prayer-row:not(:last-child)::after{
+  content: ""; position: absolute; bottom: 0; left: 10%; width: 80%; height: 1px; background: var(--line-soft);
+}
+body.theme-2 .prayer-row strong, body[data-theme="2"] .prayer-row strong{
+  color: var(--text-prayer-name); direction: rtl; font-family: "Alyamama", sans-serif !important; font-size: var(--prayer-name-size) !important; font-weight: 900; line-height: 1; white-space: nowrap; text-align: right; flex: 1 1 0;
+}
+body.theme-2 .prayer-row.next-prayer strong, body[data-theme="2"] .prayer-row.next-prayer strong{
+  color: var(--accent-light);
+}
+body.theme-2 .prayer-row time, body[data-theme="2"] .prayer-row time{
+  color: var(--text-prayer-time); direction: ltr; font-family: var(--font-numbers); font-size: var(--prayer-time-size) !important; font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; text-align: left; font-variant-numeric: tabular-nums; flex: 1 1 0;
+}
+body.theme-2 .prayer-row.next-prayer time, body[data-theme="2"] .prayer-row.next-prayer time{
+  color: var(--accent);
+}
+body.theme-2 .prayer-row .prayer-iqama, body[data-theme="2"] .prayer-row .prayer-iqama{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(30px, 4.5vw, 65px) !important; font-weight: 700; text-align: center; flex: 0 0 auto; min-width: 80px;
+}
+body.theme-2 .prayer-row.next-prayer .prayer-iqama, body[data-theme="2"] .prayer-row.next-prayer .prayer-iqama{
+  color: var(--accent); text-shadow: 0 0 14px rgba(217, 180, 90, 0.5);
+}
+body.theme-2 .countdown-footer, body[data-theme="2"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(130px, 18vh, 210px); width: calc(100% + 64px); margin-right: -32px; margin-left: -32px; padding: 15px 20px; color: var(--footer-text); background: var(--footer-bg); direction: ltr; border-top: 1px solid rgba(217,180,90,.35);
+}
+body.theme-2 .countdown-column, body[data-theme="2"] .countdown-column{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; direction: rtl; white-space: nowrap;
+}
+body.theme-2 .countdown-column span, body[data-theme="2"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 2.5vw, 34px) !important; font-weight: 600; line-height: 1.2;
+}
+body.theme-2 .countdown-column strong, body[data-theme="2"] .countdown-column strong{
+  direction: ltr; color: #ffffff; font-family: var(--font-numbers); font-size: clamp(50px, 5.5vw, 90px) !important; font-weight: 700; line-height: 1;
+}
+
+/* ==================== THEME 3: index3.html ==================== */
+body.theme-3, body[data-theme="3"] {
+  --font-arabic: "Readex Pro", "Noto Sans Arabic", "Cairo", sans-serif;
+        --font-numbers: "Fjalla One", Arial, sans-serif;
+        --bg-deep: #0a020a;
+        --accent-emerald: #00ffaa;
+        --accent-gold: #f6ff00;
+        --text-primary: #ffffff;
+        --text-prayer-name: #f0fdf4;
+        --text-prayer-time: #f1fff0;
+        --text-prayer-active: #00ffaa;
+        --text-clock: #ffffff;
+        --text-date: #00ffea;
+        --footer-bg: #ed0cde00;
+        --footer-text: #ffffff;
+        --container-padding: 4px 16px 0;
+}
+body.theme-3, body[data-theme="3"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-deep);
+}
+body.theme-3 .mosque-screen, body[data-theme="3"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column;
+        width: 100vh; height: 100vw; margin: 0; padding: var(--container-padding); overflow: hidden;
+        background: radial-gradient(circle at center, #056434 0%, #020a05 100%) !important;
+        transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-3 .mosque-screen, body[data-theme="3"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-3 .fit-content, body[data-theme="3"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-3 .clock-frame, body[data-theme="3"] .clock-frame{
+  display: grid; place-items: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 170px); margin: 0 auto; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-3 .clock-frame time, body[data-theme="3"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-numbers); font-size: clamp(80px, 11vw, 160px) !important; font-weight: 800; letter-spacing: 4px; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; text-shadow: 0 0 25px rgba(0, 255, 170, 0.45);
+}
+body.theme-3 .date-block, body[data-theme="3"] .date-block{
+  display: flex; align-items: center; flex-direction: row; justify-content: space-around; flex-shrink: 0; width: 100%; max-width: 95%; margin: 2px auto 8px; flex-wrap: wrap;
+}
+body.theme-3 .weekday, body[data-theme="3"] .weekday{
+  width: 100%; text-align: center; color: var(--text-date); font-family: var(--font-arabic); font-size: clamp(24px, 4vw, 48px); font-weight: 800; line-height: 1.1; margin-bottom: 4px; text-shadow: 0 0 15px rgba(0, 255, 170, 0.3);
+}
+body.theme-3 .date-card, body[data-theme="3"] .date-card{
+  display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px; padding: 4px 8px; border: none !important; background: transparent !important; box-shadow: none !important; flex: 1;
+}
+body.theme-3 .date-card .date-label, body[data-theme="3"] .date-card .date-label{
+  display: none;
+}
+body.theme-3 .date-card .date-value, body[data-theme="3"] .date-card .date-value{
+  color: #ffffff; font-size: clamp(22px, 3.8vw, 44px); font-weight: 800; font-family: var(--font-arabic); line-height: 1.2; text-align: center;
+}
+body.theme-3 .date-card .date-value .day-number, body[data-theme="3"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers); font-weight: 900; color: var(--accent-gold);
+}
+body.theme-3 .prayer-list, body[data-theme="3"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; min-height: 0; width: 100%; max-width: 96%; margin: 0 auto; padding: 0; gap: 0; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-3 .prayer-row, body[data-theme="3"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; min-height: 0; padding: 0; border: none !important; background: transparent !important; direction: ltr;
+}
+body.theme-3 .prayer-row.next-prayer, body[data-theme="3"] .prayer-row.next-prayer{
+  background: rgba(0, 255, 170, 0.14) !important;
+}
+body.theme-3 .prayer-row strong, body[data-theme="3"] .prayer-row strong{
+  color: var(--text-prayer-name); direction: rtl; font-family: "Alyamama", sans-serif !important; font-size: clamp(48px, 6.5vw, 96px) !important; font-weight: 700; line-height: 1; white-space: nowrap;
+}
+body.theme-3 .prayer-row.next-prayer strong, body[data-theme="3"] .prayer-row.next-prayer strong{
+  color: var(--text-prayer-active); text-shadow: 0 0 15px rgba(0, 255, 170, 0.6);
+}
+body.theme-3 .prayer-row time, body[data-theme="3"] .prayer-row time{
+  color: var(--text-prayer-time); direction: ltr; font-family: var(--font-numbers); font-size: clamp(62px, 8.5vw, 125px) !important; font-weight: 800; line-height: 1; letter-spacing: .02em; white-space: nowrap;
+}
+body.theme-3 .prayer-row.next-prayer time, body[data-theme="3"] .prayer-row.next-prayer time{
+  color: #ffffff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+body.theme-3 .countdown-footer, body[data-theme="3"] .countdown-footer{
+  display: grid; grid-template-columns: 1fr 1fr; flex: 0 0 clamp(85px, 12vh, 145px); width: calc(100% + clamp(32px, 7vw, 84px)); margin-right: calc(clamp(16px, 3.5vw, 42px) * -1); margin-left: calc(clamp(16px, 3.5vw, 42px) * -1); padding: clamp(10px, 1.5vh, 18px) clamp(16px, 3.5vw, 42px) 0; color: var(--footer-text); background: var(--footer-bg); border-top: 1px solid rgba(0, 255, 170, 0.2); direction: ltr; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+}
+body.theme-3 .countdown-column, body[data-theme="3"] .countdown-column{
+  display: flex; align-items: center; flex-direction: column; justify-content: center; direction: rtl;
+}
+body.theme-3 .countdown-column span, body[data-theme="3"] .countdown-column span{
+  color: #a2c7b5; font-family: var(--font-arabic); font-size: clamp(18px, 2.4vw, 34px) !important; font-weight: 700; line-height: 1.2; white-space: nowrap;
+}
+body.theme-3 .countdown-column strong, body[data-theme="3"] .countdown-column strong{
+  margin-top: 4px; color: var(--accent-emerald); direction: ltr; font-family: var(--font-numbers); font-size: clamp(48px, 6.2vw, 92px) !important; font-weight: 800; line-height: 1; letter-spacing: .02em; white-space: nowrap; text-shadow: 0 0 15px rgba(0, 255, 170, 0.4);
+}
+
+/* ==================== THEME 4: index4.html ==================== */
+body.theme-4, body[data-theme="4"] {
+  --font-arabic: "El Messiri", "Readex Pro", sans-serif;
+      --font-kufi: "Reem Kufi", "El Messiri", sans-serif;
+      --font-numbers: "Fjalla One", Arial, sans-serif;
+      --font-clock: "Chivo Mono", "Courier New", monospace;
+      --bg-0: #03110c; --bg-1: #072a1e; --bg-2: #0b4230;
+      --ink: #f4efe1; --ink-soft: #a7c9ba; --gold: #eac16b; --mint: #4ee0a3; --mint-soft: #7cf0c4;
+      --line: rgba(234, 193, 107, 0.16);
+      --text-primary: var(--ink); --text-prayer-name: var(--ink); --text-prayer-time: var(--gold);
+      --text-prayer-active: var(--mint-soft); --text-clock: #ffffff; --text-date: var(--mint-soft);
+      --footer-text: var(--ink); --container-padding: 4px 16px 0;
+}
+body.theme-4, body[data-theme="4"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-0);
+}
+body.theme-4 .mosque-screen, body[data-theme="4"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column;
+      width: 100vh; height: 100vw; margin: 0; padding: var(--container-padding); overflow: hidden;
+      color: var(--ink); direction: rtl; font-family: var(--font-arabic);
+      background: radial-gradient(120% 80% at 50% -10%, var(--bg-2) 0%, var(--bg-1) 42%, var(--bg-0) 100%) !important;
+      transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-4 .mosque-screen, body[data-theme="4"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-4 .fit-content, body[data-theme="4"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-4 .clock-frame, body[data-theme="4"] .clock-frame{
+  display: grid; place-items: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 170px); margin: 0 auto; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-4 .clock-frame time, body[data-theme="4"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-numbers); font-size: clamp(80px, 11vw, 170px) !important; font-weight: 700; letter-spacing: 2px; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; text-shadow: 0 0 38px rgba(78, 224, 163, 0.5), 0 0 4px rgba(255,255,255,0.4);
+}
+body.theme-4 .date-block, body[data-theme="4"] .date-block{
+  display: flex; align-items: center; flex-direction: row; justify-content: space-around; flex-shrink: 0; width: 100%; max-width: 95%; margin: 2px auto 8px; flex-wrap: wrap;
+}
+body.theme-4 .weekday, body[data-theme="4"] .weekday{
+  width: 100%; text-align: center; color: var(--text-date); font-family: var(--font-kufi); font-size: clamp(24px, 4vw, 52px); font-weight: 700; line-height: 1.1; margin-bottom: 4px; text-shadow: 0 0 18px rgba(78, 224, 163, 0.3);
+}
+body.theme-4 .date-card, body[data-theme="4"] .date-card{
+  display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px; padding: 4px 8px; flex: 1; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-4 .date-card .date-label, body[data-theme="4"] .date-card .date-label{
+  display: none;
+}
+body.theme-4 .date-card .date-value, body[data-theme="4"] .date-card .date-value{
+  color: var(--ink); font-size: clamp(20px, 3.4vw, 40px); font-weight: 600; font-family: var(--font-arabic); line-height: 1.2; text-align: center;
+}
+body.theme-4 .date-card .date-value .day-number, body[data-theme="4"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers); font-weight: 700; color: var(--gold);
+}
+body.theme-4 .prayer-list, body[data-theme="4"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; min-height: 0; width: 100%; max-width: 96%; margin: 0 auto; padding: 0; gap: 0; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-4 .prayer-row, body[data-theme="4"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; min-height: 0; padding: 0 20px; direction: ltr; border-radius: 20px; border-bottom: 1px solid var(--line); background: transparent !important; box-shadow: none !important;
+}
+body.theme-4 .prayer-list .prayer-row:last-child, body[data-theme="4"] .prayer-list .prayer-row:last-child{
+  border-bottom: none;
+}
+body.theme-4 .prayer-row strong, body[data-theme="4"] .prayer-row strong{
+  color: var(--text-prayer-name); direction: rtl; font-family: var(--font-kufi) !important; font-size: clamp(48px, 6.5vw, 100px) !important; font-weight: 700; line-height: 1; white-space: nowrap;
+}
+body.theme-4 .prayer-row time, body[data-theme="4"] .prayer-row time{
+  color: var(--text-prayer-time); direction: ltr; font-family: var(--font-numbers); font-size: clamp(62px, 8.5vw, 128px) !important; font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+body.theme-4 .prayer-row.next-prayer, body[data-theme="4"] .prayer-row.next-prayer{
+  background: linear-gradient(90deg, rgba(78,224,163,.16), rgba(234,193,107,.08)) !important; box-shadow: inset 0 0 0 1px rgba(78,224,163,.35), 0 0 34px rgba(78,224,163,.18) !important;
+}
+body.theme-4 .prayer-row.next-prayer strong, body[data-theme="4"] .prayer-row.next-prayer strong{
+  color: var(--text-prayer-active); text-shadow: 0 0 20px rgba(78, 224, 163, 0.55);
+}
+body.theme-4 .prayer-row.next-prayer time, body[data-theme="4"] .prayer-row.next-prayer time{
+  color: #ffffff; text-shadow: 0 0 22px rgba(255, 255, 255, 0.55);
+}
+body.theme-4 .countdown-footer, body[data-theme="4"] .countdown-footer{
+  display: grid; grid-template-columns: 1fr 1fr; flex: 0 0 clamp(85px, 12vh, 150px); width: calc(100% + clamp(32px, 7vw, 84px)); margin-right: calc(clamp(16px, 3.5vw, 42px) * -1); margin-left: calc(clamp(16px, 3.5vw, 42px) * -1); padding: clamp(10px, 1.5vh, 18px) clamp(16px, 3.5vw, 42px) 0; color: var(--footer-text); direction: ltr; background: linear-gradient(0deg, rgba(3,17,12,.9), rgba(11,66,48,.35)); border-top: 1px solid rgba(234, 193, 107, 0.28); box-shadow: 0 -18px 40px rgba(0, 0, 0, 0.6);
+}
+body.theme-4 .countdown-column, body[data-theme="4"] .countdown-column{
+  display: flex; align-items: center; flex-direction: column; justify-content: center; direction: rtl;
+}
+body.theme-4 .countdown-column span, body[data-theme="4"] .countdown-column span{
+  color: var(--ink-soft); font-family: var(--font-arabic); font-size: clamp(18px, 2.4vw, 34px) !important; font-weight: 600; line-height: 1.2; white-space: nowrap; letter-spacing: .06em;
+}
+body.theme-4 .countdown-column strong, body[data-theme="4"] .countdown-column strong{
+  margin-top: 4px; color: var(--mint); direction: ltr; font-family: var(--font-numbers); font-size: clamp(48px, 6.2vw, 96px) !important; font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; text-shadow: 0 0 22px rgba(78, 224, 163, 0.4);
+}
+
+/* ==================== THEME 5: index5.html ==================== */
+body.theme-5, body[data-theme="5"] {
+  --font-arabic: "Noto Kufi Arabic", sans-serif;
+      --font-name: "decotype-thuluth", "Fjalla One", serif;
+      --font-numbers: "Fjalla One", Arial, sans-serif;
+      --font-clock: "Sora", Arial, sans-serif;
+      --paper: #f6f1e3; --paper-2: #ffc149; --olive: #34401c; --olive-2: #556128;
+      --brass: #624700; --brass-2: #b8923a; --cream: #f8f4e8;
+      --line: rgba(52, 64, 28, 0.14);
+      --text-clock: #2c3617; --text-date: #6c7a34; --footer-text: #34401c;
+      --container-padding: 4px 16px 0;
+}
+body.theme-5, body[data-theme="5"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--paper);
+}
+body.theme-5 .mosque-screen, body[data-theme="5"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column;
+      width: 100vh; height: 100vw; margin: 0; padding: var(--container-padding);
+      overflow: hidden; color: var(--olive); direction: rtl; font-family: var(--font-arabic);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%) !important;
+      transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-5 .mosque-screen, body[data-theme="5"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-5 .fit-content, body[data-theme="5"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-5 .clock-frame, body[data-theme="5"] .clock-frame{
+  display: grid; place-items: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 170px); margin: 0 auto; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-5 .clock-frame time, body[data-theme="5"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(80px, 11vw, 170px) !important; font-weight: 800; letter-spacing: 1px; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+body.theme-5 .date-block, body[data-theme="5"] .date-block{
+  display: flex; align-items: center; flex-direction: row; justify-content: space-around; flex-shrink: 0; width: 100%; max-width: 95%; margin: 6px auto 8px; flex-wrap: wrap;
+}
+body.theme-5 .weekday, body[data-theme="5"] .weekday{
+  width: 100%; text-align: center; color: var(--text-date); font-family: var(--font-name); font-size: clamp(26px, 4.2vw, 54px); font-weight: 700; line-height: 1.15; margin-bottom: 8px;
+}
+body.theme-5 .date-card, body[data-theme="5"] .date-card{
+  display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px; padding: 4px 14px; flex: 1; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-5 .date-card + .date-card, body[data-theme="5"] .date-card + .date-card{
+  border-right: 2px solid var(--line) !important;
+}
+body.theme-5 .date-card .date-label, body[data-theme="5"] .date-card .date-label{
+  display: none;
+}
+body.theme-5 .date-card .date-value, body[data-theme="5"] .date-card .date-value{
+  color: var(--olive-2); font-size: clamp(20px, 3.4vw, 40px); font-weight: 700; font-family: var(--font-arabic); line-height: 1.2; text-align: center;
+}
+body.theme-5 .date-card .date-value .day-number, body[data-theme="5"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers); font-weight: 800; color: var(--brass);
+}
+body.theme-5 .prayer-list, body[data-theme="5"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; min-height: 0; width: 100%; max-width: 96%; margin: 0 auto; padding: 0; gap: 8px; border: none !important; background: transparent !important; box-shadow: none !important;
+}
+body.theme-5 .prayer-row, body[data-theme="5"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; min-height: 0; padding: 0 clamp(16px, 3vw, 34px); direction: ltr; border-radius: 18px; border-bottom: 2px solid var(--line); background: transparent !important; box-shadow: none !important;
+}
+body.theme-5 .prayer-list .prayer-row:last-child, body[data-theme="5"] .prayer-list .prayer-row:last-child{
+  border-bottom: none;
+}
+body.theme-5 .prayer-row strong, body[data-theme="5"] .prayer-row strong{
+  color: var(--olive); direction: rtl; font-family: "Alyamama", sans-serif !important; font-size: clamp(46px, 6.2vw, 96px) !important; font-weight: 900; line-height: 1.1; white-space: nowrap;
+}
+body.theme-5 .prayer-row time, body[data-theme="5"] .prayer-row time{
+  color: var(--brass); direction: ltr; font-family: var(--font-numbers); font-size: clamp(60px, 8.2vw, 122px) !important; font-weight: 800; line-height: 1; letter-spacing: .01em; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+body.theme-5 .prayer-row.next-prayer, body[data-theme="5"] .prayer-row.next-prayer{
+  background: var(--olive) !important; border-bottom: none !important; box-shadow: 0 10px 30px rgba(52, 64, 28, 0.28) !important;
+}
+body.theme-5 .prayer-row.next-prayer strong, body[data-theme="5"] .prayer-row.next-prayer strong{
+  color: var(--cream);
+}
+body.theme-5 .prayer-row.next-prayer time, body[data-theme="5"] .prayer-row.next-prayer time{
+  color: #ffffff;
+}
+body.theme-5 .countdown-footer, body[data-theme="5"] .countdown-footer{
+  display: grid; grid-template-columns: 1fr 1fr; flex: 0 0 clamp(85px, 12vh, 150px); width: calc(100% + clamp(32px, 7vw, 84px)); margin-right: calc(clamp(16px, 3.5vw, 42px) * -1); margin-left: calc(clamp(16px, 3.5vw, 42px) * -1); padding: clamp(10px, 1.5vh, 18px) clamp(16px, 3.5vw, 42px) 0; color: var(--footer-text); direction: ltr; background: rgba(52, 64, 28, 0.06); border-top: 2px solid rgba(52, 64, 28, 0.2);
+}
+body.theme-5 .countdown-column, body[data-theme="5"] .countdown-column{
+  display: flex; align-items: center; flex-direction: column; justify-content: center; direction: rtl;
+}
+body.theme-5 .countdown-column + .countdown-column, body[data-theme="5"] .countdown-column + .countdown-column{
+  border-right: 2px solid var(--line);
+}
+body.theme-5 .countdown-column span, body[data-theme="5"] .countdown-column span{
+  color: var(--olive-2); font-family: var(--font-arabic); font-size: clamp(18px, 2.4vw, 34px) !important; font-weight: 700; line-height: 1.2; white-space: nowrap;
+}
+body.theme-5 .countdown-column strong, body[data-theme="5"] .countdown-column strong{
+  margin-top: 4px; color: var(--brass); direction: ltr; font-family: var(--font-numbers); font-size: clamp(44px, 5.8vw, 88px) !important; font-weight: 800; line-height: 1; white-space: nowrap; letter-spacing: .01em; font-variant-numeric: tabular-nums;
+}
+
+/* ==================== THEME 6: index6.html ==================== */
+body.theme-6, body[data-theme="6"] {
+  --font-arabic: "Readex Pro", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Share Tech Mono", monospace;
+    --bg-main: #001b65;
+    --text-primary: #f8fafc;
+    --text-prayer-name: #e2e8f0;
+    --text-prayer-time: #ffffff;
+    --text-prayer-active: #fbbf24;
+    --text-clock: #fbf8f0;
+    --text-date: #fbbf24;
+    --text-secondary: #94a3b8;
+    --accent: #d4af37;
+    --accent-light: #fef08a;
+    --footer-bg: #09152e;
+    --footer-text: #ffffff;
+    --container-padding: 16px 28px 0;
+}
+body.theme-6, body[data-theme="6"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-6 .mosque-screen, body[data-theme="6"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column; width: 100vh; height: 100vw;
+    margin: 0; padding: var(--container-padding); overflow: hidden; color: var(--text-primary);
+    background: radial-gradient(circle at center, #0f172a 0%, #103501 100%);
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-6 .mosque-screen, body[data-theme="6"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-6 .fit-content, body[data-theme="6"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-6 .clock-frame, body[data-theme="6"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 150px); margin: 0 auto; border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 20px; background: rgba(15, 23, 42, 0.7) !important; box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.15) !important;
+}
+body.theme-6 .clock-frame time, body[data-theme="6"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(60px, 9vw, 135px) !important; font-weight: 700; letter-spacing: 4px; line-height: 1;
+}
+body.theme-6 .date-block, body[data-theme="6"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; margin: 10px auto 14px;
+}
+body.theme-6 .weekday, body[data-theme="6"] .weekday{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 3.2vw, 42px); font-weight: 800;
+}
+body.theme-6 .date-card, body[data-theme="6"] .date-card{
+  display: inline-flex; gap: 12px; border: 1px solid rgba(212, 175, 55, 0.3) !important; border-radius: 12px; padding: 6px 20px; background: rgba(15, 23, 42, 0.5) !important;
+}
+body.theme-6 .date-card .date-value, body[data-theme="6"] .date-card .date-value{
+  color: var(--text-primary); font-size: clamp(16px, 2.5vw, 32px); font-weight: 700;
+}
+body.theme-6 .date-card .date-value .day-number, body[data-theme="6"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers);
+}
+body.theme-6 .prayer-list, body[data-theme="6"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; gap: 8px; margin: 0 auto; width: 100%;
+}
+body.theme-6 .prayer-row, body[data-theme="6"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; padding: 0 35px; border: 1px solid rgba(212, 175, 55, 0.25) !important; border-radius: 16px; background: rgba(15, 23, 42, 0.45) !important; direction: ltr;
+}
+body.theme-6 .prayer-row.next-prayer, body[data-theme="6"] .prayer-row.next-prayer{
+  border-color: var(--accent) !important; background: rgba(212, 175, 55, 0.15) !important; box-shadow: 0 0 20px rgba(212, 175, 55, 0.25) !important;
+}
+body.theme-6 .prayer-row strong, body[data-theme="6"] .prayer-row strong{
+  color: var(--text-prayer-name); font-family: var(--font-arabic); font-size: clamp(34px, 5.2vw, 76px) !important; font-weight: 800;
+}
+body.theme-6 .prayer-row.next-prayer strong, body[data-theme="6"] .prayer-row.next-prayer strong{
+  color: var(--accent-light);
+}
+body.theme-6 .prayer-row time, body[data-theme="6"] .prayer-row time{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(44px, 6.8vw, 105px) !important; font-weight: 800;
+}
+body.theme-6 .prayer-row.next-prayer time, body[data-theme="6"] .prayer-row.next-prayer time{
+  color: var(--text-prayer-active);
+}
+body.theme-6 .countdown-footer, body[data-theme="6"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(110px, 15vh, 180px); width: calc(100% + 56px); margin-right: -28px; margin-left: -28px; padding: 12px 28px; background: var(--footer-bg); border-top: 2px solid var(--accent); direction: ltr;
+}
+body.theme-6 .countdown-column, body[data-theme="6"] .countdown-column{
+  display: flex; flex-direction: column; align-items: center; direction: rtl;
+}
+body.theme-6 .countdown-column span, body[data-theme="6"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(20px, 2.4vw, 32px) !important; font-weight: 700;
+}
+body.theme-6 .countdown-column strong, body[data-theme="6"] .countdown-column strong{
+  color: #ffffff; font-family: var(--font-numbers); font-size: clamp(44px, 5.2vw, 84px) !important; font-weight: 800;
+}
+
+/* ==================== THEME 7: الستايل الملكي الكحلي والذهبي ==================== */
+body.theme-7, body[data-theme="7"] {
+  --font-arabic: "Readex Pro", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Share Tech Mono", monospace;
+    --bg-main: #060b19;
+    --text-primary: #f8fafc;
+    --text-prayer-name: #e2e8f0;
+    --text-prayer-time: #ffffff;
+    --text-prayer-active: #fbbf24;
+    --text-clock: #fbf8f0;
+    --text-date: #fbbf24;
+    --accent: #d4af37;
+    --accent-light: #fef08a;
+    --footer-bg: #09152e;
+    --footer-text: #ffffff;
+    --container-padding: 16px 28px 0;
+}
+body.theme-7, body[data-theme="7"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-7 .mosque-screen, body[data-theme="7"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column; width: 100vh; height: 100vw;
+    margin: 0; padding: var(--container-padding); overflow: hidden; color: var(--text-primary);
+    background: radial-gradient(circle at center, #0f172a 0%, #060b19 100%);
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-7 .mosque-screen, body[data-theme="7"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-7 .fit-content, body[data-theme="7"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-7 .clock-frame, body[data-theme="7"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 150px); margin: 0 auto; border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 20px; background: rgba(15, 23, 42, 0.7) !important; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.15) !important;
+}
+body.theme-7 .clock-frame time, body[data-theme="7"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(60px, 9vw, 135px) !important; font-weight: 700; letter-spacing: 4px; line-height: 1;
+}
+body.theme-7 .date-block, body[data-theme="7"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; margin: 10px auto 14px;
+}
+body.theme-7 .weekday, body[data-theme="7"] .weekday{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 3.2vw, 42px); font-weight: 800;
+}
+body.theme-7 .date-card, body[data-theme="7"] .date-card{
+  display: inline-flex; gap: 12px; border: 1px solid rgba(212, 175, 55, 0.3) !important; border-radius: 12px; padding: 6px 20px; background: rgba(15, 23, 42, 0.5) !important;
+}
+body.theme-7 .date-card .date-value, body[data-theme="7"] .date-card .date-value{
+  color: var(--text-primary); font-size: clamp(16px, 2.5vw, 32px); font-weight: 700;
+}
+body.theme-7 .date-card .date-value .day-number, body[data-theme="7"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers);
+}
+body.theme-7 .prayer-list, body[data-theme="7"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; gap: 8px; margin: 0 auto; width: 100%;
+}
+body.theme-7 .prayer-row, body[data-theme="7"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; padding: 0 35px; border: 1px solid rgba(212, 175, 55, 0.25) !important; border-radius: 16px; background: rgba(15, 23, 42, 0.45) !important; direction: ltr;
+}
+body.theme-7 .prayer-row.next-prayer, body[data-theme="7"] .prayer-row.next-prayer{
+  border-color: var(--accent) !important; background: rgba(212, 175, 55, 0.15) !important; box-shadow: 0 0 20px rgba(212, 175, 55, 0.25) !important;
+}
+body.theme-7 .prayer-row strong, body[data-theme="7"] .prayer-row strong{
+  color: var(--text-prayer-name); font-family: var(--font-arabic); font-size: clamp(34px, 5.2vw, 76px) !important; font-weight: 800;
+}
+body.theme-7 .prayer-row.next-prayer strong, body[data-theme="7"] .prayer-row.next-prayer strong{
+  color: var(--accent-light);
+}
+body.theme-7 .prayer-row time, body[data-theme="7"] .prayer-row time{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(44px, 6.8vw, 105px) !important; font-weight: 800;
+}
+body.theme-7 .prayer-row.next-prayer time, body[data-theme="7"] .prayer-row.next-prayer time{
+  color: var(--text-prayer-active);
+}
+body.theme-7 .countdown-footer, body[data-theme="7"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(110px, 15vh, 180px); width: calc(100% + 56px); margin-right: -28px; margin-left: -28px; padding: 12px 28px; background: var(--footer-bg); border-top: 2px solid var(--accent); direction: ltr;
+}
+body.theme-7 .countdown-column, body[data-theme="7"] .countdown-column{
+  display: flex; flex-direction: column; align-items: center; direction: rtl;
+}
+body.theme-7 .countdown-column span, body[data-theme="7"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(20px, 2.4vw, 32px) !important; font-weight: 700;
+}
+body.theme-7 .countdown-column strong, body[data-theme="7"] .countdown-column strong{
+  color: #ffffff; font-family: var(--font-numbers); font-size: clamp(44px, 5.2vw, 84px) !important; font-weight: 800;
+}
+
+/* ==================== THEME 8: ستايل الشفق الأرجواني والذهبي ==================== */
+body.theme-8, body[data-theme="8"] {
+  --font-arabic: "Readex Pro", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Share Tech Mono", monospace;
+    --bg-main: #180828;
+    --text-primary: #ffffff;
+    --text-prayer-name: #f3e8ff;
+    --text-prayer-time: #facc15;
+    --text-prayer-active: #fde047;
+    --text-clock: #ffffff;
+    --text-date: #facc15;
+    --accent: #ffffff;
+    --accent-light: #fef08a;
+    --footer-bg: #2e1052;
+    --footer-text: #ffffff;
+    --container-padding: 16px 28px 0;
+}
+body.theme-8, body[data-theme="8"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-8 .mosque-screen, body[data-theme="8"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column; width: 100vh; height: 100vw;
+    margin: 0; padding: var(--container-padding); overflow: hidden; color: var(--text-primary);
+    background: linear-gradient(135deg, #2a0845 0%, #120024 100%);
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-8 .mosque-screen, body[data-theme="8"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-8 .fit-content, body[data-theme="8"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-8 .clock-frame, body[data-theme="8"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 150px); margin: 0 auto; border: 2px solid rgba(232, 121, 249, 0.4); border-radius: 999px; background: rgba(42, 8, 69, 0.6) !important; backdrop-filter: blur(8px); box-shadow: 0 0 25px rgba(232, 121, 249, 0.25) !important;
+}
+body.theme-8 .clock-frame time, body[data-theme="8"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(60px, 9vw, 135px) !important; font-weight: 700; letter-spacing: 4px; line-height: 1;
+}
+body.theme-8 .date-block, body[data-theme="8"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; margin: 10px auto 14px;
+}
+body.theme-8 .weekday, body[data-theme="8"] .weekday{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 3.2vw, 42px); font-weight: 800;
+}
+body.theme-8 .date-card, body[data-theme="8"] .date-card{
+  display: inline-flex; gap: 12px; border: 1px solid rgba(232, 121, 249, 0.3) !important; border-radius: 20px; padding: 6px 20px; background: rgba(42, 8, 69, 0.4) !important;
+}
+body.theme-8 .date-card .date-value, body[data-theme="8"] .date-card .date-value{
+  color: var(--text-primary); font-size: clamp(16px, 2.5vw, 32px); font-weight: 700;
+}
+body.theme-8 .date-card .date-value .day-number, body[data-theme="8"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers);
+}
+body.theme-8 .prayer-list, body[data-theme="8"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; gap: 8px; margin: 0 auto; width: 100%;
+}
+body.theme-8 .prayer-row, body[data-theme="8"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; padding: 0 35px; border: 1px solid rgba(232, 121, 249, 0.2) !important; border-radius: 16px; background: rgba(255, 255, 255, 0.05) !important; direction: ltr;
+}
+body.theme-8 .prayer-row.next-prayer, body[data-theme="8"] .prayer-row.next-prayer{
+  border-color: #facc15 !important; background: rgba(250, 204, 21, 0.15) !important; box-shadow: 0 0 20px rgba(250, 204, 21, 0.3) !important;
+}
+body.theme-8 .prayer-row strong, body[data-theme="8"] .prayer-row strong{
+  color: var(--text-prayer-name); font-family: var(--font-arabic); font-size: clamp(34px, 5.2vw, 76px) !important; font-weight: 800;
+}
+body.theme-8 .prayer-row.next-prayer strong, body[data-theme="8"] .prayer-row.next-prayer strong{
+  color: var(--accent-light);
+}
+body.theme-8 .prayer-row time, body[data-theme="8"] .prayer-row time{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(44px, 6.8vw, 105px) !important; font-weight: 800;
+}
+body.theme-8 .prayer-row.next-prayer time, body[data-theme="8"] .prayer-row.next-prayer time{
+  color: var(--text-prayer-active);
+}
+body.theme-8 .countdown-footer, body[data-theme="8"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(110px, 15vh, 180px); width: calc(100% + 56px); margin-right: -28px; margin-left: -28px; padding: 12px 28px; background: var(--footer-bg); border-top: 2px solid var(--accent); direction: ltr;
+}
+body.theme-8 .countdown-column, body[data-theme="8"] .countdown-column{
+  display: flex; flex-direction: column; align-items: center; direction: rtl;
+}
+body.theme-8 .countdown-column span, body[data-theme="8"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(20px, 2.4vw, 32px) !important; font-weight: 700;
+}
+body.theme-8 .countdown-column strong, body[data-theme="8"] .countdown-column strong{
+  color: #ffffff; font-family: var(--font-numbers); font-size: clamp(44px, 5.2vw, 84px) !important; font-weight: 800;
+}
+
+/* ==================== THEME 9: ستايل النيون السيبراني الفلورسنت ==================== */
+body.theme-9, body[data-theme="9"] {
+  --font-arabic: "Noto Kufi Arabic", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Chivo Mono", monospace;
+    --bg-main: #04090b;
+    --text-primary: #ffffff;
+    --text-prayer-name: #ffffff;
+    --text-prayer-time: #ffffff;
+    --text-prayer-active: #f1f316;
+    --text-clock: #ffffff;
+    --text-date: #ffffff;
+    --accent: #f1f316;
+    --accent-light: #ff66b2;
+    --footer-bg: #061318;
+    --footer-text: #ffffff;
+    --container-padding: 16px 28px 0;
+}
+body.theme-9, body[data-theme="9"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-9 .mosque-screen, body[data-theme="9"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column; width: 100vh; height: 100vw;
+    margin: 0; padding: var(--container-padding); overflow: hidden; color: var(--text-primary);
+    background: #04090b; transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-9 .mosque-screen, body[data-theme="9"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-9 .fit-content, body[data-theme="9"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-9 .clock-frame, body[data-theme="9"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 150px); margin: 0 auto; border: 2px solid #00ffcc; border-radius: 12px; background: rgba(0, 255, 204, 0.05) !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4), inset 0 0 15px rgba(0, 255, 204, 0.2) !important;
+}
+body.theme-9 .clock-frame time, body[data-theme="9"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(60px, 9vw, 135px) !important; font-weight: 800; letter-spacing: 4px; line-height: 1; text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
+}
+body.theme-9 .date-block, body[data-theme="9"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; margin: 10px auto 14px;
+}
+body.theme-9 .weekday, body[data-theme="9"] .weekday{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 3.2vw, 42px); font-weight: 800; text-shadow: 0 0 8px rgba(255,0,119,0.7);
+}
+body.theme-9 .date-card, body[data-theme="9"] .date-card{
+  display: inline-flex; gap: 12px; border: 1px solid #00ffcc !important; border-radius: 8px; padding: 6px 20px; background: rgba(0,0,0,0.6) !important;
+}
+body.theme-9 .date-card .date-value, body[data-theme="9"] .date-card .date-value{
+  color: var(--text-primary); font-size: clamp(16px, 2.5vw, 32px); font-weight: 700;
+}
+body.theme-9 .date-card .date-value .day-number, body[data-theme="9"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers);
+}
+body.theme-9 .prayer-list, body[data-theme="9"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; gap: 8px; margin: 0 auto; width: 100%;
+}
+body.theme-9 .prayer-row, body[data-theme="9"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; padding: 0 35px; border: 1px solid rgba(0, 255, 204, 0.3) !important; border-radius: 8px; background: rgba(4, 15, 20, 0.8) !important; direction: ltr;
+}
+body.theme-9 .prayer-row.next-prayer, body[data-theme="9"] .prayer-row.next-prayer{
+  border-color: #f1f316 !important; background: rgba(255, 0, 119, 0.15) !important; box-shadow: 0 0 20px rgba(255, 0, 119, 0.5) !important;
+}
+body.theme-9 .prayer-row strong, body[data-theme="9"] .prayer-row strong{
+  color: var(--text-prayer-name); font-family: var(--font-arabic); font-size: clamp(34px, 5.2vw, 76px) !important; font-weight: 800;
+}
+body.theme-9 .prayer-row.next-prayer strong, body[data-theme="9"] .prayer-row.next-prayer strong{
+  color: #f1f316; text-shadow: 0 0 8px #f1f316;
+}
+body.theme-9 .prayer-row time, body[data-theme="9"] .prayer-row time{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(44px, 6.8vw, 105px) !important; font-weight: 800; text-shadow: 0 0 8px #00ffcc;
+}
+body.theme-9 .prayer-row.next-prayer time, body[data-theme="9"] .prayer-row.next-prayer time{
+  color: #f1f316; text-shadow: 0 0 10px #f97316;
+}
+body.theme-9 .countdown-footer, body[data-theme="9"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(110px, 15vh, 180px); width: calc(100% + 56px); margin-right: -28px; margin-left: -28px; padding: 12px 28px; background: var(--footer-bg); border-top: 2px solid #00ffcc; direction: ltr;
+}
+body.theme-9 .countdown-column, body[data-theme="9"] .countdown-column{
+  display: flex; flex-direction: column; align-items: center; direction: rtl;
+}
+body.theme-9 .countdown-column span, body[data-theme="9"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(20px, 2.4vw, 32px) !important; font-weight: 700;
+}
+body.theme-9 .countdown-column strong, body[data-theme="9"] .countdown-column strong{
+  color: #ffffff; font-family: var(--font-numbers); font-size: clamp(44px, 5.2vw, 84px) !important; font-weight: 800; text-shadow: 0 0 8px #00ffcc;
+}
+
+/* ==================== THEME 10: ستايل الكعبة والشعر الذهبي ==================== */
+body.theme-10, body[data-theme="10"] {
+  --font-arabic: "Alyamama", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Roboto Mono", monospace;
+    --bg-main: #0c0c0e;
+    --text-primary: #ffffff;
+    --text-prayer-name: #fef08a;
+    --text-prayer-time: #ffffff;
+    --text-prayer-active: #f59e0b;
+    --text-clock: #fef08a;
+    --text-date: #eab308;
+    --accent: #eab308;
+    --accent-light: #fef08a;
+    --footer-bg: #141417;
+    --footer-text: #ffffff;
+    --container-padding: 16px 28px 0;
+}
+body.theme-10, body[data-theme="10"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-10 .mosque-screen, body[data-theme="10"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column; width: 100vh; height: 100vw;
+    margin: 0; padding: var(--container-padding); overflow: hidden; color: var(--text-primary);
+    background: #09090b; border: 4px solid var(--accent);
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-10 .mosque-screen, body[data-theme="10"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-10 .fit-content, body[data-theme="10"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-10 .clock-frame, body[data-theme="10"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 150px); margin: 0 auto; border: 2px solid var(--accent); border-radius: 4px; background: #141417 !important; box-shadow: 0 4px 20px rgba(234, 179, 8, 0.2) !important;
+}
+body.theme-10 .clock-frame time, body[data-theme="10"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(60px, 9vw, 135px) !important; font-weight: 800; letter-spacing: 4px; line-height: 1;
+}
+body.theme-10 .date-block, body[data-theme="10"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; margin: 10px auto 14px;
+}
+body.theme-10 .weekday, body[data-theme="10"] .weekday{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 3.2vw, 42px); font-weight: 800;
+}
+body.theme-10 .date-card, body[data-theme="10"] .date-card{
+  display: inline-flex; gap: 12px; border: 1px solid var(--accent) !important; border-radius: 4px; padding: 6px 20px; background: #141417 !important;
+}
+body.theme-10 .date-card .date-value, body[data-theme="10"] .date-card .date-value{
+  color: var(--text-primary); font-size: clamp(16px, 2.5vw, 32px); font-weight: 700;
+}
+body.theme-10 .date-card .date-value .day-number, body[data-theme="10"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers);
+}
+body.theme-10 .prayer-list, body[data-theme="10"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; gap: 8px; margin: 0 auto; width: 100%;
+}
+body.theme-10 .prayer-row, body[data-theme="10"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; padding: 0 35px; border: 1px solid rgba(234, 179, 8, 0.3) !important; border-radius: 4px; background: #141417 !important; direction: ltr;
+}
+body.theme-10 .prayer-row.next-prayer, body[data-theme="10"] .prayer-row.next-prayer{
+  border-color: var(--accent) !important; background: rgba(234, 179, 8, 0.2) !important; box-shadow: 0 0 15px rgba(234, 179, 8, 0.3) !important;
+}
+body.theme-10 .prayer-row strong, body[data-theme="10"] .prayer-row strong{
+  color: var(--text-prayer-name); font-family: var(--font-arabic); font-size: clamp(34px, 5.2vw, 76px) !important; font-weight: 900;
+}
+body.theme-10 .prayer-row.next-prayer strong, body[data-theme="10"] .prayer-row.next-prayer strong{
+  color: var(--accent-light);
+}
+body.theme-10 .prayer-row time, body[data-theme="10"] .prayer-row time{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(44px, 6.8vw, 105px) !important; font-weight: 800;
+}
+body.theme-10 .prayer-row.next-prayer time, body[data-theme="10"] .prayer-row.next-prayer time{
+  color: var(--text-prayer-active);
+}
+body.theme-10 .countdown-footer, body[data-theme="10"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(110px, 15vh, 180px); width: calc(100% + 56px); margin-right: -28px; margin-left: -28px; padding: 12px 28px; background: var(--footer-bg); border-top: 3px solid var(--accent); direction: ltr;
+}
+body.theme-10 .countdown-column, body[data-theme="10"] .countdown-column{
+  display: flex; flex-direction: column; align-items: center; direction: rtl;
+}
+body.theme-10 .countdown-column span, body[data-theme="10"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(20px, 2.4vw, 32px) !important; font-weight: 700;
+}
+body.theme-10 .countdown-column strong, body[data-theme="10"] .countdown-column strong{
+  color: #ffffff; font-family: var(--font-numbers); font-size: clamp(44px, 5.2vw, 84px) !important; font-weight: 800;
+}
+
+/* ==================== THEME 11: الستايل الرخامي الأبيض الفاخر ==================== */
+body.theme-11, body[data-theme="11"] {
+  --font-arabic: "Readex Pro", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Share Tech Mono", monospace;
+    --bg-main: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-prayer-name: #1e293b;
+    --text-prayer-time: #000000;
+    --text-prayer-active: #318200;
+    --text-clock: #347b00;
+    --text-date: #ffffff;
+    --accent: #ffffff;
+    --accent-light: #0c9d00;
+    --footer-bg: #347b00;
+    --footer-text: #ffffff;
+    --container-padding: 16px 28px 0;
+}
+body.theme-11, body[data-theme="11"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-11 .mosque-screen, body[data-theme="11"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column; width: 100vh; height: 100vw;
+    margin: 0; padding: var(--container-padding); overflow: hidden; color: var(--text-primary);
+    background: linear-gradient(135deg, #001123 0%, #001123 100%);
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-11 .mosque-screen, body[data-theme="11"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-11 .fit-content, body[data-theme="11"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-11 .clock-frame, body[data-theme="11"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 150px); margin: 0 auto; border: 2px solid #cbd5e1; border-radius: 20px; background: #ffffff !important; box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+}
+body.theme-11 .clock-frame time, body[data-theme="11"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(60px, 9vw, 135px) !important; font-weight: 800; letter-spacing: 4px; line-height: 1;
+}
+body.theme-11 .date-block, body[data-theme="11"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; margin: 10px auto 14px;
+}
+body.theme-11 .weekday, body[data-theme="11"] .weekday{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 3.2vw, 42px); font-weight: 800;
+}
+body.theme-11 .date-card, body[data-theme="11"] .date-card{
+  display: inline-flex; gap: 12px; border: 1px solid #cbd5e1 !important; border-radius: 12px; padding: 6px 20px; background: #ffffff !important; box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
+}
+body.theme-11 .date-card .date-value, body[data-theme="11"] .date-card .date-value{
+  color: var(--text-primary); font-size: clamp(16px, 2.5vw, 32px); font-weight: 700;
+}
+body.theme-11 .date-card .date-value .day-number, body[data-theme="11"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers);
+}
+body.theme-11 .prayer-list, body[data-theme="11"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; gap: 8px; margin: 0 auto; width: 100%;
+}
+body.theme-11 .prayer-row, body[data-theme="11"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; padding: 0 35px; border: 1px solid #cbd5e1 !important; border-radius: 16px; background: #ffffff !important; direction: ltr; box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+}
+body.theme-11 .prayer-row.next-prayer, body[data-theme="11"] .prayer-row.next-prayer{
+  border-color: #218000 !important; background: #e0f2fe !important; box-shadow: 0 6px 20px rgba(2, 132, 199, 0.2) !important;
+}
+body.theme-11 .prayer-row strong, body[data-theme="11"] .prayer-row strong{
+  color: var(--text-prayer-name); font-family: var(--font-arabic); font-size: clamp(34px, 5.2vw, 76px) !important; font-weight: 800;
+}
+body.theme-11 .prayer-row.next-prayer strong, body[data-theme="11"] .prayer-row.next-prayer strong{
+  color: #318200;
+}
+body.theme-11 .prayer-row time, body[data-theme="11"] .prayer-row time{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(44px, 6.8vw, 105px) !important; font-weight: 800;
+}
+body.theme-11 .prayer-row.next-prayer time, body[data-theme="11"] .prayer-row.next-prayer time{
+  color: #218000;
+}
+body.theme-11 .countdown-footer, body[data-theme="11"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(110px, 15vh, 180px); width: calc(100% + 56px); margin-right: -28px; margin-left: -28px; padding: 12px 28px; background: var(--footer-bg); border-top: 3px solid var(--accent); direction: ltr;
+}
+body.theme-11 .countdown-column, body[data-theme="11"] .countdown-column{
+  display: flex; flex-direction: column; align-items: center; direction: rtl;
+}
+body.theme-11 .countdown-column span, body[data-theme="11"] .countdown-column span{
+  color: #ffffff; font-family: var(--font-arabic); font-size: clamp(20px, 2.4vw, 32px) !important; font-weight: 700;
+}
+body.theme-11 .countdown-column strong, body[data-theme="11"] .countdown-column strong{
+  color: #ffffff; font-family: var(--font-numbers); font-size: clamp(44px, 5.2vw, 84px) !important; font-weight: 800;
+}
+
+/* ==================== THEME 12: ستايل الغروب النحاسي الدافئ ==================== */
+body.theme-12, body[data-theme="12"] {
+  --font-arabic: "El Messiri", sans-serif;
+    --font-numbers: "Fjalla One", monospace;
+    --font-clock: "Roboto Mono", monospace;
+    --bg-main: #240c06;
+    --text-primary: #fff7ed;
+    --text-prayer-name: #ffedd5;
+    --text-prayer-time: #ffffff;
+    --text-prayer-active: #fdba74;
+    --text-clock: #fff7ed;
+    --text-date: #fb923c;
+    --accent: #f97316;
+    --accent-light: #ffedd5;
+    --footer-bg: #3d140a;
+    --footer-text: #ffffff;
+    --container-padding: 16px 28px 0;
+}
+body.theme-12, body[data-theme="12"] {
+  width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; background: var(--bg-main);
+}
+body.theme-12 .mosque-screen, body[data-theme="12"] .mosque-screen{
+  position: absolute; top: 0; left: 0; isolation: isolate; display: flex; flex-direction: column; width: 100vh; height: 100vw;
+    margin: 0; padding: var(--container-padding); overflow: hidden; color: var(--text-primary);
+    background: linear-gradient(180deg, #451a03 0%, #1c0702 100%);
+    transform: rotate(90deg) translateY(-100%); transform-origin: top left;
+}
+@media (orientation: portrait) {
+  body.theme-12 .mosque-screen, body[data-theme="12"] .mosque-screen{
+    width: 100vw; height: 100vh; transform: none;
+  }
+}
+body.theme-12 .fit-content, body[data-theme="12"] .fit-content{
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; justify-content: space-between;
+}
+body.theme-12 .clock-frame, body[data-theme="12"] .clock-frame{
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 100%; min-height: clamp(90px, 13vh, 150px); margin: 0 auto; border: 2px solid rgba(249, 115, 22, 0.4); border-radius: 16px; background: rgba(69, 26, 3, 0.6) !important; backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(249, 115, 22, 0.2) !important;
+}
+body.theme-12 .clock-frame time, body[data-theme="12"] .clock-frame time{
+  direction: ltr; color: var(--text-clock); font-family: var(--font-clock); font-size: clamp(60px, 9vw, 135px) !important; font-weight: 800; letter-spacing: 4px; line-height: 1;
+}
+body.theme-12 .date-block, body[data-theme="12"] .date-block{
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; margin: 10px auto 14px;
+}
+body.theme-12 .weekday, body[data-theme="12"] .weekday{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(22px, 3.2vw, 42px); font-weight: 800;
+}
+body.theme-12 .date-card, body[data-theme="12"] .date-card{
+  display: inline-flex; gap: 12px; border: 1px solid rgba(249, 115, 22, 0.3) !important; border-radius: 12px; padding: 6px 20px; background: rgba(69, 26, 3, 0.4) !important;
+}
+body.theme-12 .date-card .date-value, body[data-theme="12"] .date-card .date-value{
+  color: var(--text-primary); font-size: clamp(16px, 2.5vw, 32px); font-weight: 700;
+}
+body.theme-12 .date-card .date-value .day-number, body[data-theme="12"] .date-card .date-value .day-number{
+  font-family: var(--font-numbers);
+}
+body.theme-12 .prayer-list, body[data-theme="12"] .prayer-list{
+  display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-around; gap: 8px; margin: 0 auto; width: 100%;
+}
+body.theme-12 .prayer-row, body[data-theme="12"] .prayer-row{
+  position: relative; display: flex; align-items: center; justify-content: space-between; flex: 1 1 0; padding: 0 35px; border: 1px solid rgba(249, 115, 22, 0.25) !important; border-radius: 12px; background: rgba(255, 255, 255, 0.04) !important; direction: ltr;
+}
+body.theme-12 .prayer-row.next-prayer, body[data-theme="12"] .prayer-row.next-prayer{
+  border-color: #f97316 !important; background: rgba(249, 115, 22, 0.18) !important; box-shadow: 0 0 18px rgba(249, 115, 22, 0.3) !important;
+}
+body.theme-12 .prayer-row strong, body[data-theme="12"] .prayer-row strong{
+  color: var(--text-prayer-name); font-family: var(--font-arabic); font-size: clamp(34px, 5.2vw, 76px) !important; font-weight: 800;
+}
+body.theme-12 .prayer-row.next-prayer strong, body[data-theme="12"] .prayer-row.next-prayer strong{
+  color: var(--accent-light);
+}
+body.theme-12 .prayer-row time, body[data-theme="12"] .prayer-row time{
+  color: var(--text-prayer-time); font-family: var(--font-numbers); font-size: clamp(44px, 6.8vw, 105px) !important; font-weight: 800;
+}
+body.theme-12 .prayer-row.next-prayer time, body[data-theme="12"] .prayer-row.next-prayer time{
+  color: var(--text-prayer-active);
+}
+body.theme-12 .countdown-footer, body[data-theme="12"] .countdown-footer{
+  display: flex; align-items: center; justify-content: space-between; flex: 0 0 clamp(110px, 15vh, 180px); width: calc(100% + 56px); margin-right: -28px; margin-left: -28px; padding: 12px 28px; background: var(--footer-bg); border-top: 3px solid var(--accent); direction: ltr;
+}
+body.theme-12 .countdown-column, body[data-theme="12"] .countdown-column{
+  display: flex; flex-direction: column; align-items: center; direction: rtl;
+}
+body.theme-12 .countdown-column span, body[data-theme="12"] .countdown-column span{
+  color: var(--accent); font-family: var(--font-arabic); font-size: clamp(20px, 2.4vw, 32px) !important; font-weight: 700;
+}
+body.theme-12 .countdown-column strong, body[data-theme="12"] .countdown-column strong{
+  color: #ffffff; font-family: var(--font-numbers); font-size: clamp(44px, 5.2vw, 84px) !important; font-weight: 800;
+}

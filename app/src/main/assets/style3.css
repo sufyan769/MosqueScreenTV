@@ -1,0 +1,685 @@
+/* ==========================================================================
+   style3.css - الستايل الملكي الفاخر للشاشات الأفقية (Royal Obsidian & Gold 16:9)
+   ستايل جديد كلياً يعتمد التصميم الزجاجي الفاخر (Glassmorphism) بالأونيكس والذهب
+   ========================================================================== */
+
+:root {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(26, 20, 12, 0.88) 0%, rgba(15, 11, 6, 0.92) 50%, rgba(6, 5, 3, 0.97) 100%);
+    --s4-card-bg: rgba(22, 17, 10, 0.78);
+    --s4-card-border: rgba(238, 208, 114, 0.35);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(65, 48, 18, 0.85) 0%, rgba(28, 20, 8, 0.92) 100%);
+    --s4-card-active-border: #ffd700;
+    --s4-card-active-glow: rgba(255, 215, 0, 0.55);
+    --s4-gold: #f3d069;
+    --s4-gold-bright: #ffe680;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: linear-gradient(135deg, #f3d069 0%, #c99c29 100%);
+    --s4-badge-text: #0d0903;
+    --s4-font-arabic: "El Messiri", "Tajawal", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "decotype-thuluth", "El Messiri", serif;
+    --s4-font-nums: "Share Tech Mono", "Fjalla One", monospace !important;
+}
+
+:root, [class*="theme-"], [data-theme], html, body {
+    --s4-font-nums: "Fjalla One", monospace !important;
+}
+
+/* ==========================================================================
+   المصفوفة المتكاملة للـ 13 ستايل لـ style3.css (ستايل فاخر جديد بالألوان والخطوط)
+   ========================================================================== */
+
+/* ستايل 0: الملكي الفاخر بالأونيكس والذهب الإمبراطوري */
+body.theme-0, body[data-theme="0"], html[data-theme="0"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(28, 22, 14, 0.88) 0%, rgba(16, 12, 7, 0.92) 50%, rgba(7, 5, 3, 0.97) 100%);
+    --s4-card-bg: rgba(22, 17, 10, 0.78);
+    --s4-card-border: rgba(238, 208, 114, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(65, 48, 18, 0.88) 0%, rgba(28, 20, 8, 0.94) 100%);
+    --s4-card-active-border: #ffd700;
+    --s4-card-active-glow: rgba(255, 215, 0, 0.55);
+    --s4-gold: #f3d069;
+    --s4-gold-bright: #ffe680;
+    --s4-badge-bg: linear-gradient(135deg, #f3d069 0%, #c99c29 100%);
+    --s4-badge-text: #0d0903;
+    --s4-font-arabic: "El Messiri", "Tajawal", sans-serif;
+    --s4-font-title: "decotype-thuluth", "El Messiri", serif;
+}
+
+/* ستايل 1: الزمرد الإمبراطوري والذهب النبوي */
+body.theme-1, body[data-theme="1"], html[data-theme="1"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(8, 48, 26, 0.88) 0%, rgba(5, 30, 16, 0.92) 50%, rgba(2, 15, 8, 0.97) 100%);
+    --s4-card-bg: rgba(6, 36, 20, 0.78);
+    --s4-card-border: rgba(52, 211, 153, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(16, 85, 47, 0.88) 0%, rgba(7, 45, 25, 0.94) 100%);
+    --s4-card-active-border: #34d399;
+    --s4-card-active-glow: rgba(52, 211, 153, 0.55);
+    --s4-gold: #6ee7b7;
+    --s4-gold-bright: #a7f3d0;
+    --s4-badge-bg: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    --s4-badge-text: #021508;
+    --s4-font-arabic: "Noto Kufi Arabic", "Tajawal", sans-serif;
+    --s4-font-title: "decotype-thuluth", sans-serif;
+}
+
+/* ستايل 2: الأسود الملكي والذهب الخالص */
+body.theme-2, body[data-theme="2"], html[data-theme="2"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(30, 30, 34, 0.88) 0%, rgba(18, 18, 20, 0.92) 50%, rgba(8, 8, 10, 0.97) 100%);
+    --s4-card-bg: rgba(20, 20, 24, 0.78);
+    --s4-card-border: rgba(234, 179, 8, 0.4);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(50, 48, 30, 0.88) 0%, rgba(25, 24, 15, 0.94) 100%);
+    --s4-card-active-border: #facc15;
+    --s4-card-active-glow: rgba(250, 204, 21, 0.55);
+    --s4-gold: #facc15;
+    --s4-gold-bright: #fef08a;
+    --s4-badge-bg: linear-gradient(135deg, #facc15 0%, #ca8a04 100%);
+    --s4-badge-text: #08080a;
+    --s4-font-arabic: "Alyamama", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "Alyamama", serif;
+}
+
+/* ستايل 3: العنابي الياقوتي المخملي */
+body.theme-3, body[data-theme="3"], html[data-theme="3"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(65, 12, 26, 0.88) 0%, rgba(40, 7, 16, 0.92) 50%, rgba(18, 3, 7, 0.97) 100%);
+    --s4-card-bg: rgba(45, 8, 18, 0.78);
+    --s4-card-border: rgba(244, 114, 182, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(110, 18, 42, 0.88) 0%, rgba(55, 9, 21, 0.94) 100%);
+    --s4-card-active-border: #f472b6;
+    --s4-card-active-glow: rgba(244, 114, 182, 0.55);
+    --s4-gold: #fbcfe8;
+    --s4-gold-bright: #f472b6;
+    --s4-badge-bg: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+    --s4-badge-text: #120205;
+    --s4-font-arabic: "El Messiri", serif;
+    --s4-font-title: "El Messiri", serif;
+}
+
+/* ستايل 4: الفيروزي العثماني البراق */
+body.theme-4, body[data-theme="4"], html[data-theme="4"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(14, 70, 68, 0.88) 0%, rgba(8, 44, 43, 0.92) 50%, rgba(4, 22, 21, 0.97) 100%);
+    --s4-card-bg: rgba(8, 48, 46, 0.78);
+    --s4-card-border: rgba(45, 212, 191, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(20, 105, 100, 0.88) 0%, rgba(10, 52, 50, 0.94) 100%);
+    --s4-card-active-border: #2dd4bf;
+    --s4-card-active-glow: rgba(45, 212, 191, 0.55);
+    --s4-gold: #5eead4;
+    --s4-gold-bright: #99f6e4;
+    --s4-badge-bg: linear-gradient(135deg, #2dd4bf 0%, #0d9488 100%);
+    --s4-badge-text: #021110;
+    --s4-font-arabic: "Alyamama", sans-serif;
+    --s4-font-title: "Alyamama", sans-serif;
+}
+
+/* ستايل 5: الزفير النيلي والكهرمان */
+body.theme-5, body[data-theme="5"], html[data-theme="5"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(28, 25, 70, 0.88) 0%, rgba(17, 15, 45, 0.92) 50%, rgba(8, 7, 24, 0.97) 100%);
+    --s4-card-bg: rgba(18, 16, 50, 0.78);
+    --s4-card-border: rgba(129, 140, 248, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(45, 40, 115, 0.88) 0%, rgba(22, 19, 58, 0.94) 100%);
+    --s4-card-active-border: #818cf8;
+    --s4-card-active-glow: rgba(129, 140, 248, 0.55);
+    --s4-gold: #a5b4fc;
+    --s4-gold-bright: #c7d2fe;
+    --s4-badge-bg: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%);
+    --s4-badge-text: #04030c;
+    --s4-font-arabic: "Tajawal", "Readex Pro", sans-serif;
+    --s4-font-title: "decotype-thuluth", sans-serif;
+}
+
+/* ستايل 6: الجمشت الأرجواني الذهبي */
+body.theme-6, body[data-theme="6"], html[data-theme="6"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(55, 12, 90, 0.237) 0%, rgba(35, 7, 58, 0.92) 50%, rgba(16, 3, 28, 0.97) 100%);
+    --s4-card-bg: rgba(38, 8, 62, 0.449);
+    --s4-card-border: rgba(192, 132, 252, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(90, 20, 145, 0.88) 0%, rgba(45, 10, 72, 0.94) 100%);
+    --s4-card-active-border: #c084fc;
+    --s4-card-active-glow: rgba(192, 132, 252, 0.55);
+    --s4-gold: #e9d5ff;
+    --s4-gold-bright: #f3e8ff;
+    --s4-badge-bg: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+    --s4-badge-text: #0e0118;
+    --s4-font-arabic: "Alyamama", "Tajawal", serif;
+    --s4-font-title: "Alyamama", serif;
+}
+
+/* ستايل 7: العود الدمشقي والكهرمان */
+body.theme-7, body[data-theme="7"], html[data-theme="7"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(52, 26, 14, 0.88) 0%, rgba(32, 16, 8, 0.92) 50%, rgba(14, 7, 3, 0.97) 100%);
+    --s4-card-bg: rgba(35, 18, 9, 0.78);
+    --s4-card-border: rgba(251, 146, 60, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(85, 42, 20, 0.88) 0%, rgba(42, 21, 10, 0.94) 100%);
+    --s4-card-active-border: #fb923c;
+    --s4-card-active-glow: rgba(251, 146, 60, 0.55);
+    --s4-gold: #ffedd5;
+    --s4-gold-bright: #fed7aa;
+    --s4-badge-bg: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+    --s4-badge-text: #0e0401;
+    --s4-font-arabic: "Readex Pro", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "decotype-thuluth", sans-serif;
+}
+
+/* ستايل 8: الزيتي الحراجي البرونزي */
+body.theme-8, body[data-theme="8"], html[data-theme="8"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(28, 46, 30, 0.88) 0%, rgba(18, 30, 19, 0.92) 50%, rgba(8, 14, 8, 0.97) 100%);
+    --s4-card-bg: rgba(18, 32, 19, 0.78);
+    --s4-card-border: rgba(163, 230, 53, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(42, 75, 45, 0.88) 0%, rgba(20, 36, 21, 0.94) 100%);
+    --s4-card-active-border: #a3e635;
+    --s4-card-active-glow: rgba(163, 230, 53, 0.55);
+    --s4-gold: #d9f99d;
+    --s4-gold-bright: #bef264;
+    --s4-badge-bg: linear-gradient(135deg, #a3e635 0%, #65a30d 100%);
+    --s4-badge-text: #050901;
+    --s4-font-arabic: "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "Noto Kufi Arabic", sans-serif;
+}
+
+/* ستايل 9: البلاتينيوم الفضي والجليدي */
+body.theme-9, body[data-theme="9"], html[data-theme="9"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(28, 38, 54, 0.88) 0%, rgba(17, 24, 35, 0.92) 50%, rgba(8, 12, 18, 0.97) 100%);
+    --s4-card-bg: rgba(18, 25, 38, 0.78);
+    --s4-card-border: rgba(56, 189, 248, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(14, 116, 144, 0.88) 0%, rgba(21, 65, 95, 0.94) 100%);
+    --s4-card-active-border: #38bdf8;
+    --s4-card-active-glow: rgba(56, 189, 248, 0.55);
+    --s4-gold: #7dd3fc;
+    --s4-gold-bright: #bae6fd;
+    --s4-badge-bg: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    --s4-badge-text: #03070d;
+    --s4-font-arabic: "Tajawal", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "Tajawal", sans-serif;
+}
+
+/* ستايل 10: الأزرق الكوني والليموني البراق */
+body.theme-10, body[data-theme="10"], html[data-theme="10"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(12, 33, 60, 0.88) 0%, rgba(7, 21, 38, 0.92) 50%, rgba(3, 10, 18, 0.97) 100%);
+    --s4-card-bg: rgba(8, 24, 44, 0.78);
+    --s4-card-border: rgba(250, 204, 21, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(29, 78, 216, 0.88) 0%, rgba(12, 35, 64, 0.94) 100%);
+    --s4-card-active-border: #facc15;
+    --s4-card-active-glow: rgba(250, 204, 21, 0.55);
+    --s4-gold: #fde047;
+    --s4-gold-bright: #fef08a;
+    --s4-badge-bg: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+    --s4-badge-text: #02070e;
+    --s4-font-arabic: "Alyamama", sans-serif;
+    --s4-font-title: "Alyamama", sans-serif;
+}
+
+/* ستايل 11: النحاسي الفارسي العتيق */
+body.theme-11, body[data-theme="11"], html[data-theme="11"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(58, 20, 10, 0.88) 0%, rgba(36, 12, 6, 0.92) 50%, rgba(16, 5, 2, 0.97) 100%);
+    --s4-card-bg: rgba(38, 13, 6, 0.78);
+    --s4-card-border: rgba(249, 115, 22, 0.38);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(135, 43, 20, 0.88) 0%, rgba(47, 14, 6, 0.94) 100%);
+    --s4-card-active-border: #f97316;
+    --s4-card-active-glow: rgba(249, 115, 22, 0.55);
+    --s4-gold: #ffedd5;
+    --s4-gold-bright: #fed7aa;
+    --s4-badge-bg: linear-gradient(135deg, #f97316 0%, #c2410c 100%);
+    --s4-badge-text: #0d0301;
+    --s4-font-arabic: "El Messiri", serif;
+    --s4-font-title: "El Messiri", serif;
+}
+
+/* ستايل 12: الكهرمان الإمبراطوري الفاخر */
+body.theme-12, body[data-theme="12"], html[data-theme="12"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 20%, rgba(40, 30, 10, 0.88) 0%, rgba(24, 18, 6, 0.92) 50%, rgba(10, 8, 2, 0.97) 100%);
+    --s4-card-bg: rgba(24, 18, 6, 0.78);
+    --s4-card-border: rgba(234, 179, 8, 0.4);
+    --s4-card-active-bg: linear-gradient(135deg, rgba(120, 90, 14, 0.88) 0%, rgba(30, 23, 4, 0.94) 100%);
+    --s4-card-active-border: #fde047;
+    --s4-card-active-glow: rgba(234, 179, 8, 0.55);
+    --s4-gold: #fde047;
+    --s4-gold-bright: #fef08a;
+    --s4-badge-bg: linear-gradient(135deg, #eab308 0%, #a16207 100%);
+    --s4-badge-text: #0a0802;
+    --s4-font-arabic: "decotype-thuluth", "El Messiri", serif;
+    --s4-font-title: "decotype-thuluth", serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: var(--s4-bg-screen), url('bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    font-family: var(--s4-font-arabic);
+    color: var(--s4-text-white);
+    -webkit-font-smoothing: antialiased;
+    direction: rtl;
+    user-select: none;
+}
+
+/* إخفاء الواجهة العمودية في style3 */
+#fit-content, .fit-content {
+    display: none !important;
+}
+
+.soft-pattern {
+    display: none !important;
+}
+
+/* الحاوية الرئيسية للشاشة الأفقية */
+.mosque-screen, #mosque-screen-root {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+    background-image: var(--s4-bg-screen), url('bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: block !important;
+    z-index: 1 !important;
+}
+
+/* إظهار واجهة style3 (باستخدام حاوية الشاشة الأفقية #style4-screen) */
+#style4-screen {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: clamp(14px, 2.2vh, 26px) clamp(20px, 2.8vw, 40px) !important;
+    background-image: var(--s4-bg-screen), url('bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    position: relative;
+}
+
+/* إطار زخرفي خارجي فخم للشاشة */
+#style4-screen::after {
+    content: "";
+    position: absolute;
+    inset: clamp(6px, 0.8vw, 12px);
+    border: 1.5px solid var(--s4-card-border);
+    border-radius: clamp(12px, 1.5vw, 20px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ==========================================================================
+   القسم العلوي (اسم المسجد يتسع للمساحة المتبقية | الساعة الكبرى والتاريخ بجانبها)
+   ========================================================================== */
+.s4-top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(20px, 3vw, 50px);
+    width: 100%;
+    min-height: clamp(100px, 18vh, 160px);
+    margin-bottom: clamp(8px, 1.2vh, 16px);
+    z-index: 2;
+}
+
+/* الجانب الأيمن (اسم المسجد فخم ومؤطر بخلفية زجاجية فاخرة) */
+.s4-right-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    min-width: 0;
+}
+
+.s4-mosque-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#s4-mosque-title-clickable {
+    cursor: pointer !important;
+    user-select: none;
+    display: inline-block;
+    padding: clamp(6px, 1vh, 12px) clamp(16px, 2vw, 28px);
+    background: rgba(15, 12, 7, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid var(--s4-card-border);
+    border-radius: clamp(10px, 1.2vw, 16px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+#s4-mosque-title-clickable:hover {
+    border-color: var(--s4-gold);
+    box-shadow: 0 0 20px rgba(243, 208, 105, 0.35);
+}
+
+.s4-mosque-name {
+    font-family: var(--s4-font-title), serif !important;
+    font-size: clamp(2.4rem, min(4.8vw, 8.5vh), 5.6rem) !important;
+    font-weight: 900 !important;
+    color: var(--s4-gold) !important;
+    text-shadow: 0 0 24px rgba(243, 208, 105, 0.6), 0 2px 8px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+/* الجانب الأيسر (الساعة الرقمية الكبرى والتاريخ) */
+.s4-left-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(16px, 2.2vw, 32px);
+    flex-shrink: 0;
+}
+
+/* الساعة الكبرى بإضاءة نيون ذهبية فخمة */
+.s4-main-clock {
+    font-family: var(--s4-font-nums), monospace !important;
+    font-size: clamp(4.8rem, min(8.8vw, 15vh), 9.6rem) !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 30px rgba(243, 208, 105, 0.8), 0 0 60px rgba(243, 208, 105, 0.4), 0 4px 12px rgba(0, 0, 0, 0.9);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    direction: ltr;
+    font-variant-numeric: tabular-nums;
+}
+
+/* شريط التاريخ الموحد */
+.s4-unified-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+}
+
+.s4-date-row-main {
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(1.4rem, min(2.2vw, 3.8vh), 2.4rem) !important;
+    font-weight: 800 !important;
+    color: var(--s4-gold) !important;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+.s4-date-row-hijri {
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(1.2rem, min(1.8vw, 3.2vh), 2rem) !important;
+    font-weight: 700 !important;
+    color: #e2e8f0 !important;
+    opacity: 0.95;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   القسم السفلي: شبكة البطاقات الست الفاخرة (2 صف × 3 أعمدة)
+   ========================================================================== */
+.s4-prayers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: clamp(12px, 1.6vw, 24px);
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    z-index: 2;
+}
+
+/* البطاقة الأساسية بتصميم زجاجي فاخر ترتّب العناصر عمودياً (اسم الصلاة -> الإقامة -> الوقت) */
+.s4-prayer-card {
+    background: var(--s4-card-bg) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 2px solid var(--s4-card-border) !important;
+    border-radius: clamp(12px, 1.6vw, 20px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: clamp(8px, 1.2vh, 16px) clamp(12px, 1.6vw, 24px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    text-align: center !important;
+}
+
+/* تأثير التحديد للبطاقة الفعالة (الصلاة القادمة) */
+.s4-prayer-card.is-active {
+    border-color: var(--s4-card-active-border) !important;
+    box-shadow: 0 0 35px var(--s4-card-active-glow), inset 0 0 25px rgba(255, 255, 255, 0.15) !important;
+    background: var(--s4-card-active-bg) !important;
+    transform: scale(1.02);
+}
+
+/* 1. اسم الصلاة في الأعلى (حجم فاخر ومستغل للتوازن) */
+.s4-card-name {
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(2.4rem, min(4.8vw, 8.2vh), 5.8rem) !important;
+    font-weight: 900 !important;
+    color: var(--s4-gold);
+    letter-spacing: 0.5px;
+    line-height: 1.05 !important;
+    text-align: center !important;
+    white-space: nowrap;
+    width: 100%;
+    margin: 0 !important;
+}
+
+/* 2. شارة وقت الإقامة في الوسط وتحت اسم الصلاة */
+.s4-card-iqama {
+    font-family: var(--s4-font-nums), monospace !important;
+    font-size: clamp(1.35rem, min(2.4vw, 4.2vh), 2.5rem) !important;
+    font-weight: 800;
+    color: var(--s4-gold);
+    background: rgba(243, 208, 105, 0.14);
+    border: 1.5px solid rgba(243, 208, 105, 0.5);
+    border-radius: clamp(6px, 0.8vw, 12px);
+    padding: clamp(3px, 0.5vh, 7px) clamp(14px, 1.8vw, 26px);
+    line-height: 1.15;
+    direction: ltr;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    user-select: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin: clamp(2px, 0.4vh, 6px) 0 !important;
+}
+
+.s4-card-iqama.is-countdown {
+    background: var(--s4-badge-bg) !important;
+    color: var(--s4-badge-text) !important;
+    border-color: #ffffff !important;
+    font-size: clamp(1.5rem, min(2.7vw, 4.6vh), 2.8rem) !important;
+    font-weight: 900 !important;
+    text-shadow: none !important;
+    animation: s4-pulse-iqama 1.8s infinite ease-in-out;
+}
+
+/* 3. وقت الصلاة في الأسفل بأكبر حجم ممكن ومتوازن بدون خروج من البطاقة */
+.s4-card-time {
+    font-family: var(--s4-font-nums), monospace !important;
+    font-size: clamp(3.2rem, min(6.5vw, 11vh), 7.8rem) !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+    line-height: 1.0 !important;
+    text-align: center !important;
+    direction: ltr;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    width: 100%;
+    margin: 0 !important;
+}
+
+/* ==========================================================================
+   بطاقة الشروق والعد التنازلي الفاخرة (انقر لفتح الإعدادات)
+   ========================================================================== */
+.s4-shurooq-info-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    padding: clamp(6px, 1vh, 12px) clamp(14px, 2vw, 24px) !important;
+    grid-template-columns: none !important;
+    cursor: pointer !important;
+}
+
+.s4-shurooq-info-card .s4-info-shurooq-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer !important;
+    padding: clamp(2px, 0.3vh, 5px) clamp(4px, 0.5vw, 8px);
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.s4-shurooq-info-card .s4-info-shurooq-row:hover {
+    background: rgba(243, 208, 105, 0.18);
+}
+
+.s4-shurooq-badge {
+    background: var(--s4-badge-bg);
+    color: var(--s4-badge-text);
+    font-family: var(--s4-font-arabic);
+    font-size: clamp(1.4rem, 2vw, 2.2rem);
+    font-weight: 800;
+    padding: clamp(4px, 0.6vh, 8px) clamp(14px, 1.8vw, 26px);
+    border-radius: clamp(4px, 0.6vw, 8px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    cursor: pointer !important;
+}
+
+.s4-shurooq-time {
+    font-family: var(--s4-font-nums), monospace !important;
+    font-size: clamp(2.2rem, 3.8vw, 4.2rem);
+    font-weight: 800;
+    color: var(--s4-gold);
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    cursor: pointer !important;
+}
+
+.s4-countdown-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#s4-countdown-text {
+    font-size: clamp(1.25rem, 2.1vw, 2.4rem) !important;
+    font-weight: 900 !important;
+    color: var(--s4-gold-bright) !important;
+    text-shadow: 0 0 16px rgba(243, 208, 105, 0.45);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.s4-countdown-time {
+    font-family: var(--s4-font-nums), monospace !important;
+    font-size: clamp(3.2rem, 4.4vw, 4.8rem) !important;
+    color: #ffffff !important;
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    display: inline-block;
+}
+
+.s4-clock-icon {
+    width: clamp(22px, 2.2vw, 32px);
+    height: clamp(22px, 2.2vw, 32px);
+    stroke: var(--s4-gold);
+    stroke-width: 2.5;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   حاوية تنبيه الموبايل صامت في الشاشات الأفقية (style3)
+   ========================================================================== */
+.s4-mobile-silent-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: clamp(12px, 1.6vw, 22px) !important;
+    width: 100% !important;
+    animation: s4-silent-pulse 2s infinite ease-in-out !important;
+}
+
+@keyframes s4-silent-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.s4-silent-phone-icon {
+    width: clamp(42px, 4vw, 56px);
+    height: clamp(42px, 4vw, 56px);
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
+    flex-shrink: 0;
+}
+
+.s4-silent-text-block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: right !important;
+}
+
+.s4-silent-title {
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(1.6rem, 2.6vw, 3rem) !important;
+    font-weight: 900 !important;
+    color: #ef4444 !important;
+    text-shadow: 0 0 16px rgba(239, 68, 68, 0.5) !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+}
+
+.s4-silent-sub {
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(0.8rem, 1.1vw, 1.2rem) !important;
+    color: #cbd5e1 !important;
+    font-weight: 700 !important;
+    opacity: 0.95 !important;
+    white-space: nowrap !important;
+    margin-top: 2px !important;
+}
+
+@keyframes s4-pulse-iqama {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(240, 197, 88, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(240, 197, 88, 0.8);
+    }
+}

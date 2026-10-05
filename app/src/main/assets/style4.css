@@ -1,0 +1,1014 @@
+/* ==========================================================================
+   style4.css - الستايل الأخضر لشاشات المساجد الأفقية (16:9 Landscape Screen)
+   مبني طبق الأصل للصورة المرفقة:
+   - خلفية خضراء داكنة إسلامية أنيقة
+   - ساعة رقمية عملاقة بلون ذهبي وتاريخ موحد أسفلها
+   - اسم المسجد مع أيقونة المسجد ومستطيل الشروق والعد التنازلي
+   - شبكة بطاقات الصلوات الست (الفجر، الشروق، الظهر، العصر، المغرب، العشاء)
+   ========================================================================== */
+
+:root {
+    --s4-bg-screen: radial-gradient(ellipse at 50% 25%, rgba(11, 86, 41, 0.82) 0%, rgba(7, 58, 28, 0.86) 45%, rgba(5, 43, 20, 0.90) 80%, rgba(3, 28, 13, 0.94) 100%);
+    --s4-card-bg: #07381b;
+    --s4-card-border: #186938;
+    --s4-card-active-bg: linear-gradient(135deg, #0a4f26 0%, #07381b 100%);
+    --s4-card-active-border: #f2cc64;
+    --s4-card-active-glow: rgba(242, 204, 100, 0.4);
+    --s4-gold: #eed072;
+    --s4-gold-bright: #f3ca65;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #eed072;
+    --s4-badge-text: #042010;
+    --s4-font-arabic: "Noto Kufi Arabic", "Tajawal", sans-serif;
+    --s4-font-title: decotype-thuluth, "Noto Kufi Arabic", sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif !important;
+}
+
+:root, [class*="theme-"], [data-theme], html, body {
+    --s4-font-nums: "Fjalla One", Arial, sans-serif !important;
+}
+
+/* ==========================================================================
+   المصفوفة المتكاملة للـ 13 ستايل لـ style4 (ألوان وخلفيات وخطوط عربية ورقمية)
+   تتغير وتدور فوراً عند النقر على كلمة "الفجر" وتعود عند النقر على "الوقت"
+   ========================================================================== */
+
+/* ستايل 0: الأزرق الملكي والذهبي الأصيل (Royal Sapphire & Gold) */
+body.theme-0, body[data-theme="0"], html[data-theme="0"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(8, 67, 114, 0.82) 0%, rgba(6, 53, 93, 0.86) 40%, rgba(4, 36, 66, 0.90) 75%, rgba(3, 24, 45, 0.94) 100%);
+    --s4-card-bg: #052643;
+    --s4-card-border: #0d5d9b;
+    --s4-card-active-bg: linear-gradient(135deg, #0d5d9b 0%, #084372 100%);
+    --s4-card-active-border: #f0c558;
+    --s4-card-active-glow: rgba(240, 197, 88, 0.45);
+    --s4-gold: #e5be59;
+    --s4-gold-bright: #f0c558;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #e5be59;
+    --s4-badge-text: #03182d;
+    --s4-font-arabic: "Tajawal", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "decotype-thuluth", "Noto Kufi Arabic", sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 1: الأخضر الزمردي والذهبي النبوي (Prophetic Emerald & Rich Gold) */
+body.theme-1, body[data-theme="1"], html[data-theme="1"] {
+    --s4-bg-screen: radial-gradient(ellipse at 50% 25%, rgba(11, 86, 41, 0.82) 0%, rgba(7, 58, 28, 0.86) 45%, rgba(5, 43, 20, 0.90) 80%, rgba(3, 28, 13, 0.94) 100%);
+    --s4-card-bg: #07381b;
+    --s4-card-border: #186938;
+    --s4-card-active-bg: linear-gradient(135deg, #0a4f26 0%, #07381b 100%);
+    --s4-card-active-border: #f2cc64;
+    --s4-card-active-glow: rgba(242, 204, 100, 0.45);
+    --s4-gold: #eed072;
+    --s4-gold-bright: #f3ca65;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #eed072;
+    --s4-badge-text: #042010;
+    --s4-font-arabic: "Noto Kufi Arabic", "Tajawal", sans-serif;
+    --s4-font-title: decotype-thuluth, sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 2: الأسود الكعبوي الفاخر والذهب الخالص (Kaaba Charcoal & Imperial Gold) */
+body.theme-2, body[data-theme="2"], html[data-theme="2"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(34, 34, 38, 0.82) 0%, rgba(23, 23, 26, 0.86) 45%, rgba(13, 13, 15, 0.90) 80%, rgba(5, 5, 6, 0.94) 100%);
+    --s4-card-bg: #121216;
+    --s4-card-border: rgba(234, 179, 8, 0.35);
+    --s4-card-active-bg: linear-gradient(135deg, #2b2b30 0%, #18181c 100%);
+    --s4-card-active-border: #eab308;
+    --s4-card-active-glow: rgba(234, 179, 8, 0.5);
+    --s4-gold: #eab308;
+    --s4-gold-bright: #facc15;
+    --s4-text-white: #f4f4f5;
+    --s4-badge-bg: #eab308;
+    --s4-badge-text: #050506;
+    --s4-font-arabic: "Alyamama", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "Alyamama", "Noto Kufi Arabic", sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 3: العنابي الأندلسي الداكن والذهب (Andalusian Ruby & Antique Gold) */
+body.theme-3, body[data-theme="3"], html[data-theme="3"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(74, 12, 27, 0.82) 0%, rgba(56, 8, 20, 0.86) 40%, rgba(38, 5, 14, 0.90) 75%, rgba(24, 2, 8, 0.94) 100%);
+    --s4-card-bg: #24060e;
+    --s4-card-border: #6b1228;
+    --s4-card-active-bg: linear-gradient(135deg, #701127 0%, #380814 100%);
+    --s4-card-active-border: #fbbf24;
+    --s4-card-active-glow: rgba(251, 191, 36, 0.45);
+    --s4-gold: #fcd34d;
+    --s4-gold-bright: #fbbf24;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #fcd34d;
+    --s4-badge-text: #180208;
+    --s4-font-arabic: "El Messiri", "Tajawal", serif;
+    --s4-font-title: "El Messiri", serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 4: الفيروزي العثماني المضيء (Ottoman Turquoise & Warm Amber) */
+body.theme-4, body[data-theme="4"], html[data-theme="4"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(15, 88, 84, 0.82) 0%, rgba(10, 66, 63, 0.86) 40%, rgba(6, 49, 47, 0.90) 75%, rgba(3, 29, 28, 0.94) 100%);
+    --s4-card-bg: #06312f;
+    --s4-card-border: #126c67;
+    --s4-card-active-bg: linear-gradient(135deg, #14807a 0%, #0a423f 100%);
+    --s4-card-active-border: #fef08a;
+    --s4-card-active-glow: rgba(254, 240, 138, 0.45);
+    --s4-gold: #fde047;
+    --s4-gold-bright: #fef08a;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #fde047;
+    --s4-badge-text: #031d1c;
+    --s4-font-arabic: "Alyamama", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "Alyamama", sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 5: الكحلي النيلي والكهرماني (Midnight Indigo & Luminous Amber) */
+body.theme-5, body[data-theme="5"], html[data-theme="5"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(30, 27, 75, 0.82) 0%, rgba(23, 20, 62, 0.86) 40%, rgba(15, 14, 43, 0.90) 75%, rgba(7, 6, 23, 0.94) 100%);
+    --s4-card-bg: #110f36;
+    --s4-card-border: #2d2777;
+    --s4-card-active-bg: linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%);
+    --s4-card-active-border: #fde68a;
+    --s4-card-active-glow: rgba(253, 230, 138, 0.45);
+    --s4-gold: #fbbf24;
+    --s4-gold-bright: #fde68a;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #fbbf24;
+    --s4-badge-text: #070617;
+    --s4-font-arabic: "Tajawal", "Readex Pro", sans-serif;
+    --s4-font-title: decotype-thuluth, sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 6: البنفسجي المخملي الفاخر (Quranic Royal Violet & Gold) */
+body.theme-6, body[data-theme="6"], html[data-theme="6"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(59, 7, 100, 0.82) 0%, rgba(46, 5, 79, 0.86) 40%, rgba(32, 3, 56, 0.90) 75%, rgba(19, 1, 34, 0.94) 100%);
+    --s4-card-bg: #200338;
+    --s4-card-border: #540d8c;
+    --s4-card-active-bg: linear-gradient(135deg, #5b1096 0%, #2e054f 100%);
+    --s4-card-active-border: #fef08a;
+    --s4-card-active-glow: rgba(254, 240, 138, 0.45);
+    --s4-gold: #facc15;
+    --s4-gold-bright: #fef08a;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #facc15;
+    --s4-badge-text: #130122;
+    --s4-font-arabic: "Alyamama", "Tajawal", serif;
+    --s4-font-title: "Alyamama", serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 7: الخشب العودي والذهب الدمشقي (Oud Wood & Amber Gold) */
+body.theme-7, body[data-theme="7"], html[data-theme="7"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(56, 28, 16, 0.82) 0%, rgba(43, 21, 11, 0.86) 40%, rgba(30, 13, 6, 0.90) 75%, rgba(18, 7, 3, 0.94) 100%);
+    --s4-card-bg: #1c0d06;
+    --s4-card-border: #542a18;
+    --s4-card-active-bg: linear-gradient(135deg, #5c2e19 0%, #2b150b 100%);
+    --s4-card-active-border: #fde68a;
+    --s4-card-active-glow: rgba(253, 230, 138, 0.45);
+    --s4-gold: #fbbf24;
+    --s4-gold-bright: #fde68a;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #fbbf24;
+    --s4-badge-text: #120703;
+    --s4-font-arabic: "Readex Pro", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: decotype-thuluth, sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 8: الزيتي الهادئ والبرونزي (Olive Sage & Antique Bronze) */
+body.theme-8, body[data-theme="8"], html[data-theme="8"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(30, 51, 33, 0.82) 0%, rgba(22, 39, 25, 0.86) 40%, rgba(16, 28, 18, 0.90) 75%, rgba(10, 18, 11, 0.94) 100%);
+    --s4-card-bg: #0e1a10;
+    --s4-card-border: #28472d;
+    --s4-card-active-bg: linear-gradient(135deg, #2d5532 0%, #162719 100%);
+    --s4-card-active-border: #fde047;
+    --s4-card-active-glow: rgba(253, 224, 71, 0.4);
+    --s4-gold: #eab308;
+    --s4-gold-bright: #fde047;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #eab308;
+    --s4-badge-text: #0a120b;
+    --s4-font-arabic: "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "Noto Kufi Arabic", sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 9: التيتانيوم العصري الفضي (Slate Titanium & Sky Ice) */
+body.theme-9, body[data-theme="9"], html[data-theme="9"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(30, 41, 59, 0.82) 0%, rgba(23, 32, 48, 0.86) 40%, rgba(15, 23, 42, 0.90) 75%, rgba(8, 13, 25, 0.94) 100%);
+    --s4-card-bg: #0f172a;
+    --s4-card-border: #2b3d59;
+    --s4-card-active-bg: linear-gradient(135deg, #0284c7 0%, #0c4a6e 100%);
+    --s4-card-active-border: #7dd3fc;
+    --s4-card-active-glow: rgba(125, 211, 252, 0.45);
+    --s4-gold: #38bdf8;
+    --s4-gold-bright: #7dd3fc;
+    --s4-text-white: #f8fafc;
+    --s4-badge-bg: #38bdf8;
+    --s4-badge-text: #080d19;
+    --s4-font-arabic: "Tajawal", "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: "Tajawal", sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 10: الكحلي مع الليموني البراق (High-Contrast Navy & Solar Lime) */
+body.theme-10, body[data-theme="10"], html[data-theme="10"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(12, 35, 64, 0.82) 0%, rgba(8, 26, 48, 0.86) 40%, rgba(5, 17, 32, 0.90) 75%, rgba(2, 8, 16, 0.94) 100%);
+    --s4-card-bg: #061528;
+    --s4-card-border: #143867;
+    --s4-card-active-bg: linear-gradient(135deg, #1d4ed8 0%, #0c2340 100%);
+    --s4-card-active-border: #a3e635;
+    --s4-card-active-glow: rgba(163, 230, 53, 0.45);
+    --s4-gold: #facc15;
+    --s4-gold-bright: #a3e635;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #a3e635;
+    --s4-badge-text: #020810;
+    --s4-font-arabic: "Alyamama", sans-serif;
+    --s4-font-title: "Alyamama", sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 11: النحاسي الكستنائي والغروب الصحراوي (Desert Copper & Sunset Glow) */
+body.theme-11, body[data-theme="11"], html[data-theme="11"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(61, 20, 10, 0.82) 0%, rgba(47, 14, 6, 0.86) 40%, rgba(32, 8, 3, 0.90) 75%, rgba(19, 4, 1, 0.94) 100%);
+    --s4-card-bg: #1f0803;
+    --s4-card-border: #591d0e;
+    --s4-card-active-bg: linear-gradient(135deg, #872b14 0%, #2f0e06 100%);
+    --s4-card-active-border: #ffedd5;
+    --s4-card-active-glow: rgba(254, 215, 170, 0.45);
+    --s4-gold: #fed7aa;
+    --s4-gold-bright: #ffedd5;
+    --s4-text-white: #ffffff;
+    --s4-badge-bg: #fed7aa;
+    --s4-badge-text: #130401;
+    --s4-font-arabic: "El Messiri", serif;
+    --s4-font-title: "El Messiri", serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+/* ستايل 12: الفخامة الذهبية الخالصة (Imperial Gold & Royal Onyx) */
+body.theme-12, body[data-theme="12"], html[data-theme="12"] {
+    --s4-bg-screen: radial-gradient(circle at 50% 25%, rgba(42, 32, 7, 0.82) 0%, rgba(30, 23, 4, 0.86) 40%, rgba(20, 15, 2, 0.90) 75%, rgba(10, 8, 1, 0.94) 100%);
+    --s4-card-bg: #140f02;
+    --s4-card-border: #47360a;
+    --s4-card-active-bg: linear-gradient(135deg, #785a0e 0%, #1e1704 100%);
+    --s4-card-active-border: #fde047;
+    --s4-card-active-glow: rgba(234, 179, 8, 0.5);
+    --s4-gold: #eab308;
+    --s4-gold-bright: #fde047;
+    --s4-text-white: #fef08a;
+    --s4-badge-bg: #eab308;
+    --s4-badge-text: #0a0801;
+    --s4-font-arabic: decotype-thuluth, "Noto Kufi Arabic", sans-serif;
+    --s4-font-title: decotype-thuluth, sans-serif;
+    --s4-font-nums: "Fjalla One", Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: var(--s4-bg-screen), url('bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    font-family: var(--s4-font-arabic);
+    color: var(--s4-text-white);
+    -webkit-font-smoothing: antialiased;
+    direction: rtl;
+    user-select: none;
+}
+
+/* إخفاء الواجهة العمودية في style4 */
+#fit-content, .fit-content {
+    display: none !important;
+}
+
+.soft-pattern {
+    display: none !important;
+}
+
+/* الحاوية الرئيسية للشاشة الأفقية */
+.mosque-screen, #mosque-screen-root {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+    background-image: var(--s4-bg-screen), url('bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: block !important;
+    z-index: 1 !important;
+}
+
+/* إظهار واجهة style4 */
+#style4-screen {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: clamp(10px, 1.8vh, 22px) clamp(16px, 2.2vw, 32px) !important;
+    background-image: var(--s4-bg-screen), url('bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transition: background-image 0.4s ease !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* ==========================================================================
+   القسم العلوي (اسم المسجد يتسع للمساحة المتبقية | الساعة الكبرى والتاريخ بجانبها)
+   ========================================================================== */
+.s4-top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(16px, 2.5vw, 40px);
+    width: 100%;
+    min-height: clamp(90px, 17vh, 150px);
+    margin-bottom: clamp(6px, 1vh, 12px);
+}
+
+/* الجانب الأيمن (اسم المسجد يتسع لكامل المساحة المتبقية برحابة وفخامة) */
+.s4-right-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    min-width: 0;
+}
+
+.s4-mosque-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.s4-mosque-name {
+    font-family: "Alyamama", sans-serif !important;
+    font-size: clamp(2rem, 3.8vw, 4.4rem);
+    font-weight: 900;
+    color: var(--s4-text-white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+}
+
+/* الجانب الأيسر (الساعة الرقمية الكبرى والتاريخ واليوم بجانبها أفقياً) */
+.s4-left-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(14px, 2vw, 32px);
+    direction: ltr; /* الساعة في أقصى اليسار والتاريخ بجانبها نحو الداخل */
+    flex-shrink: 0;
+}
+
+.s4-main-clock {
+    font-family: "Fjalla One", Arial, sans-serif !important;
+    font-size: clamp(5.4rem, 11.5vw, 10.5rem) !important;
+    font-weight: 800;
+    color: var(--s4-gold);
+    line-height: 0.88;
+    letter-spacing: -2px;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), 0 0 35px rgba(238, 208, 114, 0.3);
+    direction: ltr;
+    display: inline-block;
+}
+
+.s4-unified-date {
+    direction: rtl;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2px, 0.4vh, 6px);
+    font-family: var(--s4-font-arabic);
+    white-space: nowrap;
+    border-right: none;
+    padding-right: 0;
+    margin: 0 auto;
+}
+
+.s4-date-row-main {
+    font-size: clamp(2.15rem, 2.8vw, 3.05rem);
+    font-weight: 800;
+    color: var(--s4-text-white);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    line-height: 1.25;
+}
+
+.s4-date-row-hijri {
+    font-size: clamp(2.1rem, 3.7vw, 3.9rem);
+    font-weight: 800;
+    color: var(--s4-gold);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    line-height: 1.25;
+}
+
+/* ==========================================================================
+   القسم السفلي: شبكة البطاقات الست في صفين وثلاثة أسطر
+   الفجر (أعلى يمين) | بطاقة الشروق والوقت المتبقي (أعلى يسار)
+   الظهر (وسط يمين) | العصر (وسط يسار)
+   المغرب (أسفل يمين) | العشاء (أسفل يسار)
+   ========================================================================== */
+.s4-prayers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: clamp(8px, 1.1vw, 16px);
+    width: 100%;
+    flex: 1;
+    margin-top: 0;
+}
+
+/* بطاقة الشروق والوقت المتبقي في جدول الصلوات */
+.s4-prayer-card.s4-shurooq-info-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-evenly !important;
+    align-items: stretch !important;
+    padding: clamp(6px, 1vh, 14px) clamp(16px, 2.2vw, 32px) !important;
+    gap: clamp(4px, 0.7vh, 10px) !important;
+}
+
+.s4-shurooq-info-card .s4-info-shurooq-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer !important;
+    padding: clamp(2px, 0.3vh, 5px) clamp(4px, 0.5vw, 8px);
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.s4-shurooq-info-card .s4-info-shurooq-row:hover,
+.s4-shurooq-info-card .s4-info-shurooq-row:focus-visible {
+    background: rgba(229, 190, 89, 0.18);
+    box-shadow: 0 0 12px rgba(229, 190, 89, 0.25);
+    outline: none;
+}
+
+.s4-countdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* يدفع الكلمة والأيقونة لطرف والوقت للطرف الآخر */
+  width: 100%;
+}
+
+.s4-countdown-label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* مسافة بين الأيقونة والكلمة */
+}
+
+.s4-shurooq-badge {
+    background-color: var(--s4-badge-bg);
+    color: var(--s4-badge-text);
+    font-family: var(--s4-font-arabic);
+    font-size: clamp(1.1rem, 1.6vw, 1.65rem);
+    font-weight: 800;
+    padding: clamp(3px, 0.5vh, 6px) clamp(12px, 1.6vw, 22px);
+    border-radius: clamp(4px, 0.6vw, 8px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(229, 190, 89, 0.35);
+}
+
+.s4-shurooq-time {
+    font-family: "Fjalla One", Arial, sans-serif !important;
+    font-size: clamp(1.8rem, 3.2vw, 3.4rem);
+    font-weight: 800;
+    color: var(--s4-gold);
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+}
+
+#s4-countdown-text {
+    font-size: clamp(1.25rem, 2.1vw, 2.4rem) !important;
+    font-weight: 900 !important;
+    color: var(--s4-gold-bright) !important;
+    text-shadow: 0 0 16px rgba(243, 202, 101, 0.45);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.s4-countdown-time {
+    font-family: "Fjalla One", Arial, sans-serif !important;
+        font-size: clamp(4.25rem, 5.1vw, 5.4rem) !important;
+    color: rgb(255, 255, 255) !important;
+
+
+        font-variant-numeric: tabular-nums;
+    direction: ltr;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+.s4-clock-icon {
+    width: clamp(22px, 2.2vw, 32px);
+    height: clamp(22px, 2.2vw, 32px);
+    stroke: var(--s4-gold);
+    stroke-width: 2.5;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   حاوية تنبيه الموبايل صامت في الشاشات الأفقية (style4)
+   ========================================================================== */
+.s4-mobile-silent-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: clamp(12px, 1.6vw, 22px) !important;
+    width: 100% !important;
+    animation: s4-silent-pulse 2s infinite ease-in-out !important;
+}
+
+@keyframes s4-silent-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.s4-silent-phone-icon {
+    width: clamp(42px, 4vw, 56px);
+    height: clamp(42px, 4vw, 56px);
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
+    flex-shrink: 0;
+}
+
+.s4-silent-text-block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: right !important;
+}
+
+.s4-silent-title {
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(1.6rem, 2.6vw, 3rem) !important;
+    font-weight: 900 !important;
+    color: #ef4444 !important;
+    text-shadow: 0 0 16px rgba(239, 68, 68, 0.5) !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+}
+
+.s4-silent-sub {
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(0.9rem, 1.3vw, 1.35rem) !important;
+    color: #cbd5e1 !important;
+    font-weight: 700 !important;
+    opacity: 0.95 !important;
+    white-space: nowrap !important;
+    margin-top: 2px !important;
+}
+
+/* نهاية قسم تنبيه الموبايل صامت */
+
+.s4-prayer-card {
+    background-color: var(--s4-card-bg);
+    border: 2px solid var(--s4-card-border);
+    border-radius: clamp(8px, 1.1vw, 14px);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 clamp(16px, 2.5vw, 38px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    user-select: none;
+}
+
+.s4-prayer-card.is-active {
+    border-color: var(--s4-card-active-border);
+    box-shadow: 0 0 24px var(--s4-card-active-glow), inset 0 0 20px rgba(255, 255, 255, 0.08);
+    background: var(--s4-card-active-bg) !important;
+}
+
+.s4-card-name {
+    font-family: "Alyamama", var(--s4-font-arabic), sans-serif !important;
+    font-size: clamp(2.2rem, min(4.4vw, 7.5vh), 5.2rem) !important;
+    font-weight: 900 !important;
+    color: var(--s4-gold);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* شارة وقت الإقامة بين اسم الصلاة والوقت (+10) */
+.s4-card-iqama {
+    font-family: "Fjalla One", Arial, sans-serif !important;
+    font-size: clamp(1.2rem, min(2.2vw, 3.8vh), 2.2rem);
+    font-weight: 800;
+    color: var(--s4-gold);
+    background: rgba(238, 208, 114, 0.12);
+    border: 1.5px solid rgba(238, 208, 114, 0.45);
+    border-radius: clamp(6px, 0.8vw, 10px);
+    padding: clamp(2px, 0.4vh, 5px) clamp(10px, 1.2vw, 18px);
+    line-height: 1.2;
+    direction: ltr;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    user-select: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.s4-card-iqama.is-countdown {
+    background: rgba(242, 204, 100, 0.3);
+    border-color: #f2cc64;
+    color: #ffffff;
+    font-size: clamp(1.4rem, min(2.5vw, 4.4vh), 2.6rem) !important;
+    font-weight: 900 !important;
+    text-shadow: 0 0 10px rgba(242, 204, 100, 0.8);
+    animation: s4-pulse-iqama 1.8s infinite ease-in-out;
+}
+
+.s4-card-iqama.is-silent-mode {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border-color: #ef4444 !important;
+    color: #ef4444 !important;
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(1.2rem, min(2.2vw, 3.8vh), 2.2rem) !important;
+    font-weight: 800 !important;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.6) !important;
+    animation: s4-pulse-silent 1.8s infinite ease-in-out !important;
+}
+
+@keyframes s4-pulse-silent {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    }
+    50% {
+        transform: scale(1.04);
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.8);
+    }
+}
+
+@keyframes s4-pulse-iqama {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(240, 197, 88, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(240, 197, 88, 0.8);
+    }
+}
+
+.s4-card-time {
+    font-family: "Fjalla One", Arial, sans-serif !important;
+    font-size: clamp(4.6rem, min(7.4vw, 1.8vh), 8.2rem) !important;
+    font-weight: 800 !important;
+    color: var(--s4-gold);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    text-align: left;
+    justify-self: end;
+    white-space: nowrap;
+}
+
+/* بطاقة الشروق في جدول الصلوات - تعمل كزر للإعدادات وضبط المواقيت */
+.s4-prayer-card.is-shurooq {
+    cursor: pointer !important;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.s4-prayer-card.is-shurooq:hover {
+    border-color: var(--s4-gold) !important;
+    box-shadow: 0 8px 24px rgba(229, 190, 89, 0.25) !important;
+    transform: translateY(-2px);
+}
+
+.s4-prayer-card.is-shurooq:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   النافذة المنبثقة للإعدادات والتنبيهات بنمط المسجد الإسلامي (أخضر وذهبي)
+   ========================================================================== */
+#settings-modal.settings-layer {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(2, 22, 10, 0.88) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    z-index: 9999999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 16px !important;
+    direction: rtl !important;
+}
+
+#settings-modal:not(.is-open)[style*="display: none"],
+#settings-modal:not(.is-open)[style*="display:none"],
+#settings-modal:not(.is-open) {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+#settings-modal.is-open,
+#settings-modal[style*="display: flex"],
+#settings-modal[style*="display:flex"],
+#settings-modal[style*="display: grid"],
+#settings-modal[style*="display:grid"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.settings-panel {
+    background: #062b16 !important;
+    border: 2px solid rgba(229, 190, 89, 0.45) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75) !important;
+    width: 96% !important;
+    max-width: 640px !important;
+    max-height: 92vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    padding: 20px 24px !important;
+    color: #ffffff !important;
+}
+
+.settings-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 1.5px solid rgba(229, 190, 89, 0.25) !important;
+    padding-bottom: 14px !important;
+    margin-bottom: 12px !important;
+}
+
+.settings-header h2 {
+    color: var(--s4-gold) !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    font-family: var(--s4-font-arabic) !important;
+}
+
+.settings-header span {
+    color: #86efac !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+.settings-description {
+    color: #cbd5e1 !important;
+    font-size: 14px !important;
+    margin-bottom: 14px !important;
+    line-height: 1.5 !important;
+}
+
+.settings-row {
+    background: #041e10 !important;
+    border: 1px solid rgba(229, 190, 89, 0.18) !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+}
+
+.settings-row strong {
+    color: #ffffff !important;
+    font-size: 17px !important;
+}
+
+.settings-row small {
+    color: #94a3b8 !important;
+    display: block !important;
+    font-size: 12px !important;
+}
+
+.prayer-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+}
+
+.control-field {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 12px !important;
+    color: #94a3b8 !important;
+}
+
+.control-field span {
+    font-size: 11px !important;
+    color: #86efac !important;
+    white-space: nowrap !important;
+}
+
+.minute-control {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.minute-control button {
+    background: #0a4724 !important;
+    color: var(--s4-gold) !important;
+    border: 1.5px solid rgba(229, 190, 89, 0.4) !important;
+    border-radius: 8px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+}
+
+.minute-control button:hover {
+    background: #116b38 !important;
+    color: #ffffff !important;
+    border-color: var(--s4-gold) !important;
+    transform: scale(1.05) !important;
+}
+
+.minute-display {
+    min-width: 64px !important;
+    text-align: center !important;
+    font-family: var(--s4-font-nums) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: var(--s4-gold) !important;
+    background: rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid rgba(229, 190, 89, 0.2) !important;
+    border-radius: 6px !important;
+    padding: 4px 8px !important;
+    direction: rtl !important;
+}
+
+.settings-actions {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 16px !important;
+}
+
+.save-button {
+    flex: 2 !important;
+    background: var(--s4-gold) !important;
+    color: #052512 !important;
+    font-family: var(--s4-font-arabic) !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(229, 190, 89, 0.3) !important;
+}
+
+.save-button:hover {
+    background: #f0c558 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 18px rgba(229, 190, 89, 0.45) !important;
+}
+
+.reset-button {
+    flex: 1 !important;
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+    font-family: var(--s4-font-arabic) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    border: 1px solid rgba(239, 68, 68, 0.4) !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.reset-button:hover {
+    background: rgba(239, 68, 68, 0.25) !important;
+}
+
+.settings-close {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+}
+
+.settings-close:hover {
+    background: rgba(239, 68, 68, 0.6) !important;
+    border-color: #ef4444 !important;
+}
+
+.nav-scroll-btn {
+    background: #0a4724 !important;
+    color: var(--s4-gold) !important;
+    border: 1px solid rgba(229, 190, 89, 0.3) !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    cursor: pointer !important;
+}
+
+#stylesheet-select,
+#mosque-name-input {
+    background: #041e10 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(229, 190, 89, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 6px 10px !important;
+    outline: none !important;
+}
+
+#stylesheet-select:focus,
+#mosque-name-input:focus {
+    border-color: var(--s4-gold) !important;
+    box-shadow: 0 0 10px rgba(229, 190, 89, 0.35) !important;
+}
+
+#theme-toast, .theme-toast {
+    position: fixed !important;
+    top: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-25px) !important;
+    background: rgba(10, 20, 15, 0.96) !important;
+    border: 2px solid var(--s4-gold) !important;
+    color: var(--s4-gold) !important;
+    padding: 10px 32px !important;
+    border-radius: 30px !important;
+    font-family: var(--s4-font-arabic) !important;
+    font-size: clamp(1rem, 1.6vw, 1.4rem) !important;
+    font-weight: 800 !important;
+    z-index: 999999 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    white-space: nowrap !important;
+    direction: rtl !important;
+    text-shadow: 0 0 14px rgba(229, 190, 89, 0.4) !important;
+}
+
+#theme-toast.show-theme-toast, .theme-toast.show {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+}

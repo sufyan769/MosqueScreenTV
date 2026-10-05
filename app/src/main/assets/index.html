@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>شاشة مواقيت الصلاة - كركوك</title>
+  <meta name="description" content="شاشة عرض مواقيت الصلاة والعد التنازلي لجامع كركوك الكبير" />
+  <meta property="og:title" content="شاشة مواقيت الصلاة - كركوك" />
+  <meta property="og:description" content="شاشة عرض مواقيت الصلاة والعد التنازلي لجامع كركوك الكبير" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Alyamama:wght@300..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&family=El+Messiri:wght@400..700&family=Chivo+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=decotype-thuluth" />
+
+  <link rel="stylesheet" id="app-stylesheet" href="./style4.css" />
+</head>
+<body class="theme-0" data-theme="0">
+<main class="mosque-screen" dir="rtl" id="mosque-screen-root">
+  <div class="soft-pattern" aria-hidden="true"></div>
+
+  <div class="fit-content" id="fit-content">
+  <section class="clock-frame" aria-label="الساعة الحالية" style="display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px, 4vw, 45px);">
+    <h1 id="mosque-title" class="mosque-title" title="انقر للتبديل السريع بين style1.css و style2.css" style="font-family: decotype-thuluth ; font-size: clamp(22px, 3.6vw, 48px); font-weight: 800; color: var(--text-date); white-space: nowrap; margin: 0; cursor: pointer;">مسجد النور</h1>
+    <time id="live-clock">00:00</time>
+  </section>
+
+  <section class="date-block" aria-label="التاريخ" style="margin: 4px auto 10px; width: 100%;">
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; gap: 10px;">
+      <div class="date-card hijri-card" style="flex: 1; justify-content: center;">
+        <div class="date-value" id="live-hijri">
+          <span class="day-number">--</span>
+          <span>--</span>
+        </div>
+      </div>
+      <strong class="weekday" id="live-weekday" style="flex: 1; text-align: center; margin: 0; white-space: nowrap; font-size: clamp(20px, 3vw, 40px);">--</strong>
+      <div class="date-card" style="flex: 1; justify-content: center;">
+        <div class="date-value" id="live-gregorian">
+          <span class="day-number">--</span>
+          <span>--</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prayer-list" id="prayer-list-container" aria-label="أوقات الصلاة"></section>
+
+  <footer class="countdown-footer">
+    <div class="countdown-column" id="col-iqama">
+      <span id="label-iqama">المتبقي للإقامة</span>
+      <strong id="countdown-iqama">00:00</strong>
+    </div>
+    <div class="countdown-column" id="col-adhan">
+      <span id="label-adhan">الأذان التالي</span>
+      <strong id="countdown-adhan">00:00</strong>
+    </div>
+  </footer>
+  </div>
+
+  <!-- واجهة العرض للشاشات الأفقية (الستايل الأخضر - style4.css) -->
+  <div id="style4-screen" class="style4-screen">
+    <!-- القسم العلوي -->
+    <section class="s4-top-section">
+      <!-- يمين الشاشة: اسم المسجد يتسع لكامل المساحة المتبقية بفخامة ورحابة -->
+      <div class="s4-right-block">
+        <div class="s4-mosque-header" id="s4-mosque-header">
+          <div id="s4-mosque-title-clickable">
+            <h2 id="s4-mosque-name" class="s4-mosque-name">مسجد النور - كركوك</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- يسار الشاشة: الساعة الرقمية الكبرى والتاريخ واليوم بجانبها أفقياً -->
+      <div class="s4-left-block">
+        <time id="s4-main-clock" class="s4-main-clock">00:00</time>
+        <div id="s4-unified-date" class="s4-unified-date">
+          <span class="s4-date-row-main" id="s4-date-weekday-greg">الجمعة 06 أيلول</span>
+          <span class="s4-date-row-hijri" id="s4-date-hijri">24 صفر 1448 هـ</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- القسم السفلي: شبكة البطاقات الست (الفجر، بطاقة الشروق والوقت المتبقي، الظهر، العصر، المغرب، العشاء) -->
+    <section class="s4-prayers-grid" id="s4-prayers-grid" aria-label="أوقات الصلاة">
+      <!-- بطاقة الفجر -->
+      <article class="s4-prayer-card" data-key="fajr">
+        <span class="s4-card-name">الفجـر</span>
+        <span class="s4-card-iqama">+15</span>
+        <time class="s4-card-time">04:30</time>
+      </article>
+
+      <!-- بطاقة الشروق والوقت المتبقي المدمجة (تحل محل بطاقة الشروق القديمة) -->
+      <article class="s4-prayer-card s4-shurooq-info-card" data-key="sunrise" id="s4-shurooq-info-card">
+        <!-- صف الشروق (زر الإعدادات وضبط المواقيت) -->
+        <div class="s4-info-shurooq-row" id="s4-shurooq-box" title="انقر لفتح الإعدادات وضبط المواقيت" tabindex="0" role="button" aria-label="الشروق - فتح الإعدادات وضبط المواقيت">
+          <span class="s4-shurooq-badge" id="s4-shurooq-badge">
+            <span>الشروق</span>
+          </span>
+          <time id="s4-shurooq-time" class="s4-shurooq-time">00:00</time>
+        </div>
+        <!-- سطر الوقت المتبقي / تنبيه الموبايل صامت -->
+        <div class="s4-countdown-row" id="s4-countdown-row">
+          <svg class="s4-clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="s4-countdown-text">--:--</span>
+        </div>
+      </article>
+
+      <!-- بطاقة الظهر -->
+      <article class="s4-prayer-card" data-key="dhuhr">
+        <span class="s4-card-name">الظهـر</span>
+        <span class="s4-card-iqama">+15</span>
+        <time class="s4-card-time">12:15</time>
+      </article>
+
+      <!-- بطاقة العصر -->
+      <article class="s4-prayer-card" data-key="asr">
+        <span class="s4-card-name">العصـر</span>
+        <span class="s4-card-iqama">+15</span>
+        <time class="s4-card-time">03:45</time>
+      </article>
+
+      <!-- بطاقة المغرب -->
+      <article class="s4-prayer-card" data-key="maghrib">
+        <span class="s4-card-name">المغـرب</span>
+        <span class="s4-card-iqama">+10</span>
+        <time class="s4-card-time">06:20</time>
+      </article>
+
+      <!-- بطاقة العشاء -->
+      <article class="s4-prayer-card" data-key="isha">
+        <span class="s4-card-name">العشـاء</span>
+        <span class="s4-card-iqama">+15</span>
+        <time class="s4-card-time">07:50</time>
+      </article>
+    </section>
+  </div>
+</main>
+
+  <div class="settings-layer" id="settings-modal" style="display: none;" role="presentation">
+    <section class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <header class="settings-header">
+        <div>
+          <span>لوحة التحكم</span>
+          <h2 id="settings-title">إعدادات المواقيت</h2>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="nav-scroll-btn" type="button" id="scroll-up-settings" title="التنقل للأعلى" aria-label="التنقل للأعلى">▲ لأعلى</button>
+          <button class="nav-scroll-btn" type="button" id="scroll-down-settings" title="التنقل للأسفل" aria-label="التنقل للأسفل">▼ لأسفل</button>
+          <button class="settings-close" type="button" id="close-settings" aria-label="إغلاق الإعدادات">×</button>
+        </div>
+      </header>
+      <p class="settings-description">اضبط وقت الأذان ووقت الإقامة لكل صلاة باستخدام زرين (+ و -) فقط.</p>
+      <div class="settings-prayers" id="settings-prayers-container"></div>
+      <div class="settings-special">
+        <div class="settings-row">
+          <div>
+            <strong>المدينة / المنطقة</strong>
+            <small>اختيار مواقيت الصلاة من مدن ومناطق العراق (177 مدينة وقضاء)</small>
+          </div>
+          <div class="minute-control" style="width: auto;">
+            <select id="city-select" style="background: #0f5892; color: #ffffff; border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-arabic, sans-serif); font-size: 14px; cursor: pointer; max-width: 250px;">
+              <option value="wtimes-iq.kirkuk.js">كركوك (Kirkuk)</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-row">
+          <div>
+            <strong>ملف الستايل (CSS)</strong>
+            <small>التبديل بين ستايل المسجد الأخضر (style4) والأزرق الملكي (style2) والأشكال الـ 13 (style1)</small>
+          </div>
+          <div class="minute-control" style="width: auto;">
+            <select id="stylesheet-select" style="background: #0f5892; color: #ffffff; border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-arabic, sans-serif); font-size: 14px; cursor: pointer;">
+              <option value="style4.css">style4.css (الستايل الأخضر - شاشة المسجد الأفقية)</option>
+              <option value="style3.css">style3.css (الستايل الملكي الفاخر - شاشة أفقية جديدة)</option>
+              <option value="style2.css">style2.css (الأزرق الملكي والـ 13 لون - عمودي)</option>
+              <option value="style1.css">style1.css (المتعدد 13 ستايل - عمودي)</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-row">
+          <div>
+            <strong>اسم المسجد</strong>
+            <small>اسم المسجد الظاهر أعلى الشاشة</small>
+          </div>
+          <div class="minute-control" style="width: 55%;">
+            <input type="text" id="mosque-name-input" style="width: 100%; text-align: right; padding: 4px 10px; font-family: var(--font-arabic); font-size: 15px;" value="مسجد النور" />
+          </div>
+        </div>
+        <div class="settings-row">
+          <div>
+            <strong>تصحيح التاريخ الهجري</strong>
+            <small>التعديل بالأيام (+ أو −)</small>
+          </div>
+          <div class="minute-control">
+            <button type="button" id="hijri-dec">−</button>
+            <span class="minute-display" id="hijri-display">0 يوم</span>
+            <button type="button" id="hijri-inc">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="settings-actions">
+        <button class="reset-button" type="button" id="reset-settings">إعادة الضبط</button>
+        <button class="save-button" type="button" id="save-settings">حفظ وإغلاق</button>
+      </div>
+    </section>
+  </div>
+
+<script src="./cities_data.js"></script>
+<script src="./times.js"></script>
+</body>
+</html>
