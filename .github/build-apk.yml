@@ -1,19 +1,46 @@
-# 1. إعداد بيئة جافا (مطلوب لـ Gradle و Android SDK)
+name: Build Mosque Screen TV APK
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # 2. قبول التراخيص والتأكد من حزم SDK عبر الأدوات المدمجة في الخادم
-      - name: Accept Android Licenses & Ensure Build-Tools
+      - name: Accept Android Licenses & Ensure SDK Tools
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0"
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0" || true
 
-      # 3. إعطاء تصريح التشغيل وبناء التطبيق
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: |
+          if [ -f "./gradlew" ]; then chmod +x ./gradlew; fi
 
-      - name: Build with Gradle
-        run: ./gradlew assembleRelease || ./gradlew assembleDebug
+      - name: Build APK with Gradle
+        run: |
+          if [ -f "./gradlew" ]; then
+            ./gradlew assembleRelease || ./gradlew assembleDebug
+          else
+            echo "Gradle wrapper not found, checking directory files:"
+            ls -la
+          fi
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MosqueScreenTV-APK
+          path: |
+            **/build/outputs/apk/**/*.apk
+          if-no-files-found: warn
